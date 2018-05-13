@@ -1,0 +1,12 @@
+# temporary files: in any directory
+junk
+junk.*
+# documentation log file: at top level only
+/omhelp.doc.log
+# vim editor swap files: in any directory
+*.swp
+# documentation directory: at top level only
+/doc/
+# build and test directory: at top level only
+/build/
+
