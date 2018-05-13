@@ -8,22 +8,30 @@
 # $begin student_college$$ $newlinech #$$
 # $spell
 #	nrow
+#	csv
 # $$
 #
 # $section Student / College Matching Problem$$
 #
+# $head Syntax$$
+# $icode%match% <- student_college(%student_file%, %college_file%)
+# %$$
+#
 # $head Description$$
 # Finds one of the stable matchings for the college admissions problem.
 #
-# $head Assumptions$$
+# $head Conventions$$
 # $list number$$
 # No two students have the same name and no student name is empty.
 # $lnext
 # No two colleges have the same name and no college name is empty.
+# $lnext
+# The data corresponding to one row and one column is called a cell.
+# A cell with only spaces is treated the same as an empty cell.
 # $lend
 #
 # $head n_student$$
-# We use $code n_student$$ to denote the number of students in the match,
+# We use $icode n_student$$ to denote the number of students in the match,
 # which is also equal to the number of columns in $icode student_file$$.
 #
 # $head n_college$$
@@ -31,37 +39,39 @@
 # which is also equal to the number of columns in $icode college_file$$.
 #
 # $head student_file$$
-# This is a comma separated value file with $icode n_student$$ columns and
+# This is a comma separated value file (csv file)
+# with $icode n_student$$ columns and
 # $icode%n_college%+1%$$ rows.
 # The first row contains the names of the students.
-# The other entries in each column are the names of the
+# The other cells in each column are the names of the
 # acceptable colleges for the student name in the first row of the column.
 # The lower the row index, the more preferred the college is to the student.
 # No college name appears twice in a column.
-# Empty rows, for the colleges that do not appear in a column, are all at
-# the bottom of the column.
+# For each student (column), empty cells are used for the colleges that are
+# not acceptable to a student and are placed at the bottom of the column.
 #
 # $head college_file$$
 # This is a comma separated value file with $icode n_college$$ columns and
 # $icode n_student+2$$ rows.
 # The first row contains the names of the colleges.
 # Each column of the second row contains a positive integer that specifies
-# the number of students the corresponding
-# college is willing to accept.
-# The other entries in each column are the names of the
+# the number of students positions the corresponding
+# college has available.
+# The other cells in each column are the names of the
 # acceptable students for the college name in the first row of the column.
-# The lower the row index, the more preferred the college is to the student.
+# The lower the row index, the more preferred the student is to the college.
 # No student name appears twice in a column.
-# Empty rows, for the students that do not appear in a column, are all at
-# the bottom of the column.
+# For each college (column), empty cells are used for the students that are
+# not acceptable to a college and are placed at the bottom of the column.
 #
-# $head result$$
-# The return value $icode result$$ is a data frame with column names
-# $code student$$ and $code college$$.
-# Each row of the result is a matched pair of a student to a particular college.
-# The number of rows $codei%nrow(%result%)%$$ is the number of pairs.
-# The student and college for the $th i$$ pair are
-# $icode%result%[%i%,"student"]%$$ and $icode%[%i%,"college"]%$$ respectively.
+# $head match$$
+# The return value $icode match$$ is a data frame with two columns,
+# one named $code student$$ and the other named $code college$$.
+# Each row of $icode match$$ is a student, college pair.
+# The number of rows $codei%nrow(%match%)%$$ is the number of pairs.
+# The student for the $th i$$ pair is $icode%match%[%i%,"student"]%$$, and
+# the college for the $th i$$ pair is $icode%[%i%,"college"]%$$ respectively.
+# No student appears which in $icode match$$.
 #
 # $children%example/student_college/s7_c2_a3.R
 # %$$
@@ -124,7 +134,8 @@ student_college <- function(student_file, college_file)
 	for( j in seq(n_college) )
 	{	for(i in seq(n_student) )
 		{	name  <- college_data_frame[i+1,j]
-			if( is.na(name) )
+			empty <- is.na(name) || grepl("^ *$", name)
+			if( empty )
 				college_preference[i,j] <- NA
 			else
 			{	name <- as.character(name)
@@ -194,9 +205,9 @@ student_college <- function(student_file, college_file)
 		student     <- c(student, this_student)
 		college     <- c(college, this_college)
 	}
-	result <- data.frame(student, college)
-	result <- result[order(student),]
-	return(result)
+	match <- data.frame(student, college)
+	match <- match[order(student),]
+	return(match)
 }
 # ----------------------------------------------------------------------------
 # https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf
