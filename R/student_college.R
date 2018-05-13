@@ -1,4 +1,7 @@
 # $begin student_college$$ $newlinech #$$
+# $spell
+#	nrow
+# $$
 #
 # $section Student / College Matching Problem$$
 #
@@ -46,13 +49,12 @@
 # the bottom of the column.
 #
 # $head result$$
-# The return value $icode result$$ is a
-# list with character arguments and values.
-# For each officer name that has a match,
-# the corresponding command name can be obtained by
-# $codei%
-#		%command_name% <- %result%[%officer_name%]
-# %$$
+# The return value $icode result$$ is a data frame with column names
+# $code student$$ and $code college$$.
+# Each row of the result is a matched pair of a student to a particular college.
+# The number of rows $codei%nrow(%result%)%$$ is the number of pairs.
+# The student and college for the $th i$$ pair are
+# $icode%result%[%i%,"student"]%$$ and $icode%[%i%,"college"]%$$ respectively.
 #
 # $head Example$$
 # $srcfile%example/student_college/s7_c2_s3.R%$$
@@ -174,16 +176,16 @@ student_college <- function(student_file, college_file)
 	student_match  <- matching[["student"]][match_number == 1]
 	college_match  <- matching[["college"]][match_number == 1]
 	n_match        <- length(college_match)
-	student_tmp    <- c()
-	college_tmp    <- c()
+	student        <- c()
+	college        <- c()
 	for ( i in seq(n_match) )
-	{	student     <- student_name[ as.integer( student_match[i] ) ]
-		college     <- college_name[ as.integer( college_match[i] ) ]
-		student_tmp <- c(student_tmp, student)
-		college_tmp <- c(college_tmp, college)
+	{	this_student <- student_name[ as.integer( student_match[i] ) ]
+		this_college <- college_name[ as.integer( college_match[i] ) ]
+		student     <- c(student, this_student)
+		college     <- c(college, this_college)
 	}
-	result <- data.frame(student_tmp, college_tmp)
-	result <- result[order(student_tmp),]
+	result <- data.frame(student, college)
+	result <- result[order(student),]
 	return(result)
 }
 # ----------------------------------------------------------------------------
@@ -198,4 +200,4 @@ student_college <- function(student_file, college_file)
 #n_match  <- length(college)
 #message( sprintf("%10s%10s", "student", "college") )
 #for ( i in seq(n_match) )
-#	message( sprintf("%10d%10d", student[i], college[i]) )
+  # student s1 is first choice for both colleges#	message( sprintf("%10d%10d", student[i], college[i]) )
