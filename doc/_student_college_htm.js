@@ -16,13 +16,14 @@ var list_down0 = [
 'student_college_s7_c2_a3.r.htm'
 ];
 var list_current0 = [
+'student_college.htm#Syntax',
 'student_college.htm#Description',
-'student_college.htm#Assumptions',
+'student_college.htm#Conventions',
 'student_college.htm#n_student',
 'student_college.htm#n_college',
 'student_college.htm#student_file',
 'student_college.htm#college_file',
-'student_college.htm#result',
+'student_college.htm#match',
 'student_college.htm#Example'
 ];
 function choose_across0(item)

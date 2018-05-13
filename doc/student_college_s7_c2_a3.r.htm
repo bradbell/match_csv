@@ -97,7 +97,7 @@ setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A19
 data &lt;- paste(
 <font color="#FF0000">"s1,s2,s3,s4,s5,s6,s7"</font> , <i><font color="#9A1900"># student names</font></i>
 <font color="#FF0000">"c1,c1,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
-<font color="#FF0000">"c2,c2,,c2,c2,c2,c2"</font>   , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
+<font color="#FF0000">"c2,c2,  ,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>                 <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
@@ -111,23 +111,23 @@ data &lt;- paste(
 <font color="#FF0000">"s3,s3"</font>,  <i><font color="#9A1900"># student s3 is third  choice for both colleges</font></i>
 <font color="#FF0000">"s4,s4"</font>,  <i><font color="#9A1900"># student s4 is fourth choice for both colleges</font></i>
 <font color="#FF0000">"s5,s5"</font>,  <i><font color="#9A1900"># student s5 is fifth  choice for both colleges</font></i>
-<font color="#FF0000">"s6,"</font>,    <i><font color="#9A1900"># s6 is sixth   choice for c1, not acceptable to c2</font></i>
-<font color="#FF0000">"s7,"</font>,    <i><font color="#9A1900"># s7 is seventh choice for c1, not acceptable to c2</font></i>
+<font color="#FF0000">"s6,  "</font>,  <i><font color="#9A1900"># s6 is sixth   choice for c1, not acceptable to c2</font></i>
+<font color="#FF0000">"s7,  "</font>,  <i><font color="#9A1900"># s7 is seventh choice for c1, not acceptable to c2</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"college.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 student_file &lt;- <font color="#FF0000">"student.csv"</font>
 college_file &lt;- <font color="#FF0000">"college.csv"</font>
-result       &lt;- student_college(student_file, college_file)
-ok  &lt;- nrow(result) == 5
-ok  &lt;- ok &amp;&amp; result[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s1"</font> &amp;&amp; result[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; result[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; result[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; result[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; result[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; result[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; result[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; result[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; result[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+match        &lt;- student_college(student_file, college_file)
+ok  &lt;- nrow(match) == 5
+ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s1"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
 <i><font color="#9A1900"># print the results</font></i>
-print(result)
+print(match)
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
 {    message(<font color="#FF0000">"student2college_xam: OK"</font>)
