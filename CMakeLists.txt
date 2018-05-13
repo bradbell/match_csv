@@ -5,16 +5,9 @@
 #              GNU General Public License version 3.0 or later see
 #                  https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
-$begin match_csv$$
-$spell
-	csv
-$$
+# PROJECT command is ued by package.sh
+PROJECT(match_csv)
+#
+# match_csv_version is used by version.sh to get the version number.
+SET(match_csv_version "20180513")
 
-$section
-match_csv-20180513: Csv File Interface to Matching Problem Solvers
-$$
-
-$childtable%R/student_college.R
-%$$
-
-$end

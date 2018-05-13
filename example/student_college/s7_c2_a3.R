@@ -1,3 +1,10 @@
+# -----------------------------------------------------------------------------
+#        match_csv: Csv File Interface to Matching Problem Solvers
+#       Copyright (C) 2017-18 Bradley M. Bell (bradbell@seanet.com)
+#            This program is distributed under the terms of the
+#              GNU General Public License version 3.0 or later see
+#                  https://www.gnu.org/licenses/gpl-3.0.txt
+# -----------------------------------------------------------------------------
 # $begin student_college_s7_c2_a3.R$$ $newlinech #$$
 #
 # $section Student / College Matching example$$
