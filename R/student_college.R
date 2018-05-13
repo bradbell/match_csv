@@ -56,8 +56,11 @@
 # The student and college for the $th i$$ pair are
 # $icode%result%[%i%,"student"]%$$ and $icode%[%i%,"college"]%$$ respectively.
 #
+# $children%example/student_college/s7_c2_a3.R
+# %$$
 # $head Example$$
-# $srcfile%example/student_college/s7_c2_s3.R%$$
+# The file $cref student_college_s7_c2_a3.R$$ contains an example
+# and test using $code student_college$$.
 #
 # $end
 student_college <- function(student_file, college_file)
