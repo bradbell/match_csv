@@ -75,10 +75,10 @@
 # The rows of $icode match$$ are in increasing alphabetical order by
 # students name.
 #
-# $children%example/student_college/s7_c2_a3.R
+# $children%example/student_college/get_started.R
 # %$$
 # $head Example$$
-# The file $cref student_college_s7_c2_a3.R$$ contains an example
+# The file $cref student_college_get_started.R$$ contains an example
 # and test using $code student_college$$.
 #
 # $end

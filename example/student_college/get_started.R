@@ -5,7 +5,7 @@
 #              GNU General Public License version 3.0 or later see
 #                  https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
-# $begin student_college_s7_c2_a3.R$$ $newlinech #$$
+# $begin student_college_get_started.R$$ $newlinech #$$
 #
 # $section Student / College Matching example$$
 #
@@ -19,7 +19,7 @@
 # to standard output.
 #
 # $head Source Code$$
-# $srcfile%example/student_college/s7_c2_a3.R%0# %# BEGIN R%# END R%1%$$
+# $srcfile%example/student_college/get_started.R%0# %# BEGIN R%# END R%1%$$
 #
 # $end
 # BEGIN R
@@ -66,7 +66,6 @@ print(match)
 if( ok )
 {	message("student2college_xam: OK")
 } else {
-	message("student2college_xam: Error")
-	quit(status = 1)
+	stop("student2college_xam: Error")
 }
 # END R
