@@ -72,6 +72,8 @@
 # The student for the $th i$$ pair is $icode%match%[%i%,"student"]%$$, and
 # the college for the $th i$$ pair is $icode%[%i%,"college"]%$$ respectively.
 # No student appears which in $icode match$$.
+# The rows of $icode match$$ are in increasing alphabetical order by
+# students name.
 #
 # $children%example/student_college/s7_c2_a3.R
 # %$$
