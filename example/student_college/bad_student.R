@@ -25,9 +25,9 @@ setwd('build')                # put files in build directory
 # student.csv
 data <- paste(
 "s1,s2,s3,s4,s5,s6" , # student names
-"c1,c1,c1,c1,c1,c1" , # college c1 is first choice for all students
+"c3,c3,c3,c3,c3,c3" , # college c3 is first choice for all students
 "  ,c2,c2,c2,c2,c2" , # college c2 is second choice for all but student s1
-"  ,c3,c3,c3,c3,c3" , # college c3 is third  choice for all but student s1
+"  ,c1,c1,c1,c1,c1" , # college c1 is third  choice for all but student s1
 sep="\n"              # put a newline character between each line above
 )
 write(data, "student.csv")
@@ -41,7 +41,7 @@ data <- paste(
 "s4,s4,s4",  # student s4 is 3rd   choice for all colleges
 "s3,s3,s3",  # student s3 is 4th   choice for all colleges
 "s2,s2,s2",  # student s2 is 5th   choice for all colleges
-"  ,s1,s1",  # student s1 is not acceptable for college c1
+"s1,s1,  ",  # student s1 is not acceptable for college c3
 sep="\n"  # put a newline character between each line above
 )
 write(data, "college.csv")
@@ -50,11 +50,11 @@ student_file <- "student.csv"
 college_file <- "college.csv"
 match        <- student_college(student_file, college_file)
 ok  <- nrow(match) == 5
-ok  <- ok && match[1,"student"] == "s2" && match[1,"college"] == "c3"
+ok  <- ok && match[1,"student"] == "s2" && match[1,"college"] == "c1"
 ok  <- ok && match[2,"student"] == "s3" && match[2,"college"] == "c2"
 ok  <- ok && match[3,"student"] == "s4" && match[3,"college"] == "c2"
-ok  <- ok && match[4,"student"] == "s5" && match[4,"college"] == "c1"
-ok  <- ok && match[5,"student"] == "s6" && match[5,"college"] == "c1"
+ok  <- ok && match[4,"student"] == "s5" && match[4,"college"] == "c3"
+ok  <- ok && match[5,"student"] == "s6" && match[5,"college"] == "c3"
 # print the results
 print(match)
 #

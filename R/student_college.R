@@ -95,8 +95,18 @@ student_college <- function(student_file, college_file)
 	# -------------------------------------------------------------------------
 	# read input files
 	#
-	student_data_frame <- read.csv(student_file, strip.white = TRUE)
-	college_data_frame <- read.csv(college_file, strip.white = TRUE)
+	student_data_frame <- read.csv(
+		student_file,
+		strip.white = TRUE,
+		colClasses  = "character",
+		check.names = FALSE
+	)
+	college_data_frame <- read.csv(
+		college_file,
+		strip.white = TRUE,
+		colClasses  =  "character",
+		check.names = FALSE
+	)
 	# -------------------------------------------------------------------------
 	# sizes
 	student_size    <- dim(student_data_frame)
@@ -142,7 +152,7 @@ student_college <- function(student_file, college_file)
 	{	for( i in seq(n_college) )
 		{	college <- student_matrix[i,j]
 			if( ! ( empty_cell(college) || student_ok[j] ) )
-			{	acceptible_student = college_matrix[,i]
+			{	acceptible_student = college_matrix[,college]
 				if( student_name[j] %in% acceptible_student )
 					student_ok[j] <- TRUE
 			}
