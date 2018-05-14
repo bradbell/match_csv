@@ -22,12 +22,14 @@
 #
 # $head Conventions$$
 # $list number$$
+# The data corresponding to one row and one column is called a cell.
+# Leading and trailing white space, in a cell, does not matter.
+# A cell with only white space, or nothing, is called empty.
+# $lnext
 # No two students have the same name and no student name is empty.
 # $lnext
 # No two colleges have the same name and no college name is empty.
 # $lnext
-# The data corresponding to one row and one column is called a cell.
-# A cell with only spaces is treated the same as an empty cell.
 # $lend
 #
 # $head n_student$$
@@ -82,17 +84,19 @@
 # %$$
 #
 # $end
+# -----------------------------------------------------------------------------
+empty_cell <- function(cell)
+{	return( is.na(cell) || cell == "" )
+}
 student_college <- function(student_file, college_file)
 {
 	# packages
-	requireNamespace("readr")
 	requireNamespace("matchingMarkets")
 	# -------------------------------------------------------------------------
 	# read input files
 	#
-	col_types          <- readr::cols( .default = readr::col_character() )
-	student_data_frame <- readr::read_csv(student_file, col_types = col_types)
-	college_data_frame <- readr::read_csv(college_file, col_types = col_types)
+	student_data_frame <- read.csv(student_file, strip.white = TRUE)
+	college_data_frame <- read.csv(college_file, strip.white = TRUE)
 	# -------------------------------------------------------------------------
 	# sizes
 	student_size    <- dim(student_data_frame)
@@ -126,7 +130,8 @@ student_college <- function(student_file, college_file)
 	# number of slots for j-th college is n_slot[j]
 	n_slot <- rep(0, n_college)
 	for ( j in seq(n_college) )
-	{	n_slot[j]      <- as.integer( college_data_frame[1, j] )
+	{	# Going straight to integer does not work (R is a crazy language)
+		n_slot[j]      <- as.integer( as.matrix( college_data_frame[1, j] ) )
 	}
 	# -------------------------------------------------------------------------
 	# college preference matrix
@@ -136,8 +141,7 @@ student_college <- function(student_file, college_file)
 	for( j in seq(n_college) )
 	{	for(i in seq(n_student) )
 		{	name  <- college_data_frame[i+1,j]
-			empty <- is.na(name) || grepl("^ *$", name)
-			if( empty )
+			if( empty_cell(name) )
 				college_preference[i,j] <- NA
 			else
 			{	name <- as.character(name)
@@ -163,7 +167,7 @@ student_college <- function(student_file, college_file)
 	for( j in seq(n_student) )
 	{	for(i in seq(n_college) )
 		{	name  <- student_data_frame[i,j]
-			if( is.na(name) )
+			if( empty_cell(name) )
 				student_preference[i,j] <- NA
 			else
 			{	name  <- as.character(name)
@@ -189,6 +193,7 @@ student_college <- function(student_file, college_file)
 		nSlots    = n_slot,
 		s.prefs   = student_preference,
 		c.prefs   = college_preference,
+		seed      = 123,
 		s.range   = NULL,
 		c.range   = NULL
 	)

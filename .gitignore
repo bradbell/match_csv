@@ -9,4 +9,7 @@ junk.*
 /doc/
 # build and test directory: at top level only
 /build/
+# directories used to cache files; at top level only
+/new/
+/new.*/
 
