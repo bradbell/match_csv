@@ -41,7 +41,7 @@ data <- paste(
 "s4,s4,s4",  # student s4 is 3rd   choice for all colleges
 "s3,s3,s3",  # student s3 is 4th   choice for all colleges
 "s2,s2,s2",  # student s2 is 5th   choice for all colleges
-"s1,s1,s1",  # student s1 is not acceptable for college c1
+"  ,s1,s1",  # student s1 is not acceptable for college c1
 sep="\n"  # put a newline character between each line above
 )
 write(data, "college.csv")

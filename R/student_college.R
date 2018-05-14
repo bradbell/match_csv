@@ -134,6 +134,34 @@ student_college <- function(student_file, college_file)
 		n_slot[j]      <- as.integer( as.matrix( college_data_frame[1, j] ) )
 	}
 	# -------------------------------------------------------------------------
+	# students that will not accept any college that will accept them
+	student_ok = rep(FALSE, n_student)
+	for( j in seq(n_student) )
+	{	for( i in seq(n_college) )
+		{	college <- student_data_frame[i,j]
+			if( ! ( empty_cell(college) || student_ok[j] ) )
+			{	acceptible_student = college_data_frame[,i]
+				if( student_name[j] %in% acceptible_student )
+					student_ok[j] <- TRUE
+			}
+		}
+	}
+	#
+	# college_data_frame
+	# do not worry about overwriting first row becasue already have n_solt
+	vec <- rep(TRUE, (n_student + 1) * n_college)
+	ok  <- matrix(vec, n_student + 1, n_college)
+	for( student in student_name[ ! student_ok ] )
+		ok <- ok & college_data_frame != student
+	college_data_frame[! ok] <- NA
+	#
+	# new n_student
+	n_student <- sum(student_ok)
+	# new student_data_frame
+	student_data_frame <- student_data_frame[, student_ok]
+	# new student_name
+	student_name       <- student_name[student_ok]
+	# -------------------------------------------------------------------------
 	# college preference matrix
 	college_preference <- matrix(
 		rep(0, n_student * n_college), n_student, n_college
