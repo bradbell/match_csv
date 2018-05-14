@@ -8,18 +8,19 @@ var list_across0 = [
 var list_up0 = [
 'match_csv.htm',
 'student_college.htm',
-'student_college_bad_student.r.htm'
+'bad_college.r.htm'
 ];
 var list_down2 = [
 'student_college.htm'
 ];
 var list_down1 = [
-'student_college_get_started.r.htm',
-'student_college_bad_student.r.htm'
+'get_started.r.htm',
+'bad_student.r.htm',
+'bad_college.r.htm'
 ];
 var list_current0 = [
-'student_college_bad_student.r.htm#Discussion',
-'student_college_bad_student.r.htm#Source Code'
+'bad_college.r.htm#Discussion',
+'bad_college.r.htm#Source Code'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

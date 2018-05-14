@@ -32,7 +32,7 @@ A:active { color : purple }
 <a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
 </td>
 <td><a href="_contents.htm" target="_top">Prev</a>
-</td><td><a href="student_college_get_started.r.htm" target="_top">Next</a>
+</td><td><a href="get_started.r.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
 <option>Index-&gt;</option>
@@ -59,8 +59,9 @@ A:active { color : purple }
 <td>
 <select onchange='choose_down0(this)'>
 <option>student_college-&gt;</option>
-<option>student_college_get_started.R</option>
-<option>student_college_bad_student.R</option>
+<option>get_started.R</option>
+<option>bad_student.R</option>
+<option>bad_college.R</option>
 </select>
 </td>
 <td>
@@ -73,7 +74,7 @@ A:active { color : purple }
 <option>n_college</option>
 <option>student_file</option>
 <option>college_file</option>
-<option>match</option>
+<option>match_file</option>
 <option>Example</option>
 <option>Contents</option>
 </select>
@@ -83,10 +84,11 @@ A:active { color : purple }
 <br>
 <b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
 
-<br>
+<code><font color="blue"><br>
+%student_college(%student_file%, %college_file%, %match_file%)
+%</font></code>
 
-<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;-&nbsp;student_college(</span></font><i><font color="black"><span style='white-space: nowrap'>student_file</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>college_file</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
-</span></font></code>
+<br>
 <br>
 <b><big><a name="Description" id="Description">Description</a></big></b>
 <br>
@@ -106,8 +108,6 @@ No two students have the same name and no student name is empty.
 </li><li>
 
 No two colleges have the same name and no college name is empty.
-</li><li>
-
 </li></ol>
 
 
@@ -137,7 +137,7 @@ which is also equal to the number of columns in
 <br>
 <b><big><a name="student_file" id="student_file">student_file</a></big></b>
 <br>
-This is a comma separated value file (csv file)
+This is a csv input file
 with 
 <code><i><font color="black"><span style='white-space: nowrap'>n_student</span></font></i></code>
  columns and
@@ -156,7 +156,7 @@ not acceptable to a student and are placed at the bottom of the column.
 <br>
 <b><big><a name="college_file" id="college_file">college_file</a></big></b>
 <br>
-This is a comma separated value file with 
+This is a csv input file with 
 <code><i><font color="black"><span style='white-space: nowrap'>n_college</span></font></i></code>
  columns and
 
@@ -175,27 +175,15 @@ not acceptable to a college and are placed at the bottom of the column.
 
 <br>
 <br>
-<b><big><a name="match" id="match">match</a></big></b>
+<b><big><a name="match_file" id="match_file">match_file</a></big></b>
 <br>
-The return value 
-<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
- is a data frame with two columns,
+This is a csv output file with two columns,
 one named <code><font color="blue">student</font></code> and the other named <code><font color="blue">college</font></code>.
 Each row of 
 <code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
  is a student, college pair.
-The number of rows 
-<code><font color="blue"><span style='white-space: nowrap'>nrow(</span></font><i><font color="black"><span style='white-space: nowrap'>match</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
- is the number of pairs.
-The student for the <code><i>i</i></code>-th pair is 
-<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>,&quot;student&quot;]</span></font></code>
-, and
-the college for the <code><i>i</i></code>-th pair is 
-<code><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>i</span></font><i><font color="black"><span style='white-space: nowrap'>,&quot;college&quot;]</span></font></i></code>
- respectively.
-No student appears which in 
-<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
-.
+No student appears more than once and not college appears more than
+the number of available positions it has.
 The rows of 
 <code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
  are in increasing alphabetical order by
@@ -210,7 +198,7 @@ students name.
 <b><big><a name="Contents" id="Contents">Contents</a></big></b>
 <br>
 <table>
-<tr><td><a href="student_college_get_started.r.htm" target="_top">student_college_get_started.R</a></td><td>Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;example</td></tr><tr><td><a href="student_college_bad_student.r.htm" target="_top">student_college_bad_student.R</a></td><td>Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;example</td></tr></table>
+<tr><td><a href="get_started.r.htm" target="_top">get_started.R</a></td><td>Get&nbsp;Starting&nbsp;Using&nbsp;This&nbsp;Package</td></tr><tr><td><a href="bad_student.r.htm" target="_top">bad_student.R</a></td><td>Example:&nbsp;Student&nbsp;Thinks&nbsp;to&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="bad_college.r.htm" target="_top">bad_college.R</a></td><td>Example:&nbsp;College&nbsp;Thinks&nbsp;To&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr></table>
 <hr>Input File: R/student_college.R
 
 </body>

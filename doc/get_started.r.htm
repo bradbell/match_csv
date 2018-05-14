@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>Student / College Matching example</title>
+<title>Get Starting Using This Package</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="Student / College Matching example">
+<meta name="description" id="description" content="Get Starting Using This Package">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -23,7 +23,7 @@ A:link { color : blue }
 A:visited { color : purple }
 A:active { color : purple }
 </style>
-<script type='text/javascript' language='JavaScript' src='_student_college_get_started.r_htm.js'>
+<script type='text/javascript' language='JavaScript' src='_get_started.r_htm.js'>
 </script>
 </head>
 <body>
@@ -32,7 +32,7 @@ A:active { color : purple }
 <a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
 </td>
 <td><a href="student_college.htm" target="_top">Prev</a>
-</td><td><a href="student_college_bad_student.r.htm" target="_top">Next</a>
+</td><td><a href="bad_student.r.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
 <option>Index-&gt;</option>
@@ -48,7 +48,7 @@ A:active { color : purple }
 <option>Up-&gt;</option>
 <option>match_csv</option>
 <option>student_college</option>
-<option>student_college_get_started.R</option>
+<option>get_started.R</option>
 </select>
 </td>
 <td>
@@ -60,11 +60,12 @@ A:active { color : purple }
 <td>
 <select onchange='choose_down1(this)'>
 <option>student_college-&gt;</option>
-<option>student_college_get_started.R</option>
-<option>student_college_bad_student.R</option>
+<option>get_started.R</option>
+<option>bad_student.R</option>
+<option>bad_college.R</option>
 </select>
 </td>
-<td>student_college_get_started.R</td>
+<td>get_started.R</td>
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
@@ -73,7 +74,7 @@ A:active { color : purple }
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>Student / College Matching example</big></big></b></center>
+<center><b><big><big>Get Starting Using This Package</big></big></b></center>
 <br>
 <b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
 <br>
@@ -97,7 +98,7 @@ data &lt;- paste(
 <font color="#FF0000">"s1,s2,s3,s4,s5,s6,s7"</font> , <i><font color="#9A1900"># student names</font></i>
 <font color="#FF0000">"c1,c1,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
 <font color="#FF0000">"c2,c2,  ,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
-sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>                 <i><font color="#9A1900"># put a newline character between each line above</font></i>
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
@@ -118,20 +119,23 @@ write(data, <font color="#FF0000">"college.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 student_file &lt;- <font color="#FF0000">"student.csv"</font>
 college_file &lt;- <font color="#FF0000">"college.csv"</font>
-match        &lt;- student_college(student_file, college_file)
+match_file   &lt;- <font color="#FF0000">"match.csv"</font>
+student_college(student_file, college_file, match_file)
+<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+match &lt;- read.csv(
+     match_file, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
+)
 ok  &lt;- nrow(match) == 5
 ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s1"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
 ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-<i><font color="#9A1900"># print the results</font></i>
-print(match)
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
-{    message(<font color="#FF0000">"student2college_xam: OK"</font>)
+{    message(<font color="#FF0000">"get_started: OK"</font>)
 } <b><font color="#0000FF">else</font></b> {
-     stop(<font color="#FF0000">"student2college_xam: Error"</font>)
+     stop(<font color="#FF0000">"get_started: Error"</font>)
 }</tt></pre>
 
 <hr>Input File: example/student_college/get_started.R

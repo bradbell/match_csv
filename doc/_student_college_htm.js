@@ -13,8 +13,9 @@ var list_down1 = [
 'student_college.htm'
 ];
 var list_down0 = [
-'student_college_get_started.r.htm',
-'student_college_bad_student.r.htm'
+'get_started.r.htm',
+'bad_student.r.htm',
+'bad_college.r.htm'
 ];
 var list_current0 = [
 'student_college.htm#Syntax',
@@ -24,7 +25,7 @@ var list_current0 = [
 'student_college.htm#n_college',
 'student_college.htm#student_file',
 'student_college.htm#college_file',
-'student_college.htm#match',
+'student_college.htm#match_file',
 'student_college.htm#Example',
 'student_college.htm#Contents'
 ];
