@@ -23,7 +23,7 @@ A:link { color : blue }
 A:visited { color : purple }
 A:active { color : purple }
 </style>
-<script type='text/javascript' language='JavaScript' src='_student_college_s7_c2_a3.r_htm.js'>
+<script type='text/javascript' language='JavaScript' src='_student_college_bad_student.r_htm.js'>
 </script>
 </head>
 <body>
@@ -31,7 +31,7 @@ A:active { color : purple }
 <td>
 <a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
 </td>
-<td><a href="student_college.htm" target="_top">Prev</a>
+<td><a href="student_college_get_started.r.htm" target="_top">Prev</a>
 </td><td><a href="_reference.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
@@ -48,7 +48,7 @@ A:active { color : purple }
 <option>Up-&gt;</option>
 <option>match_csv</option>
 <option>student_college</option>
-<option>student_college_s7_c2_a3.R</option>
+<option>student_college_bad_student.R</option>
 </select>
 </td>
 <td>
@@ -60,10 +60,11 @@ A:active { color : purple }
 <td>
 <select onchange='choose_down1(this)'>
 <option>student_college-&gt;</option>
-<option>student_college_s7_c2_a3.R</option>
+<option>student_college_get_started.R</option>
+<option>student_college_bad_student.R</option>
 </select>
 </td>
-<td>student_college_s7_c2_a3.R</td>
+<td>student_college_bad_student.R</td>
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
@@ -72,17 +73,12 @@ A:active { color : purple }
 </select>
 </td>
 </tr></table><br>
- 
-
 <center><b><big><big>Student / College Matching example</big></big></b></center>
 <br>
 <b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
 <br>
-This is the 7 students, 2 colleges, 3 available slots example from
-<a href="https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf" target="_top"><span style='white-space: nowrap'>matchingMarkets</span></a>
-.
-The results are checked for correctness as well as being printed
-to standard output.
+This is a case where a student will only accept the best college,
+but that college will not accept the student.
 
 <br>
 <br>
@@ -95,24 +91,24 @@ setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A19
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 <i><font color="#9A1900"># student.csv</font></i>
 data &lt;- paste(
-<font color="#FF0000">"s1,s2,s3,s4,s5,s6,s7"</font> , <i><font color="#9A1900"># student names</font></i>
-<font color="#FF0000">"c1,c1,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
-<font color="#FF0000">"c2,c2,  ,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
-sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>                 <i><font color="#9A1900"># put a newline character between each line above</font></i>
+<font color="#FF0000">"s1,s2,s3,s4,s5,s6"</font> , <i><font color="#9A1900"># student names</font></i>
+<font color="#FF0000">"c3,c3,c3,c3,c3,c3"</font> , <i><font color="#9A1900"># college c3 is first choice for all students</font></i>
+<font color="#FF0000">"  ,c2,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># college c2 is second choice for all but student s1</font></i>
+<font color="#FF0000">"  ,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is third  choice for all but student s1</font></i>
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>              <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 <i><font color="#9A1900"># college.csv</font></i>
 data &lt;- paste(
-<font color="#FF0000">"c1,c2"</font>,  <i><font color="#9A1900"># college names</font></i>
-<font color="#FF0000">"3,3"</font>,    <i><font color="#9A1900"># both colleges have 3 available slots</font></i>
-<font color="#FF0000">"s1,s1"</font>,  <i><font color="#9A1900"># student s1 is first  choice for both colleges</font></i>
-<font color="#FF0000">"s2,s2"</font>,  <i><font color="#9A1900"># student s2 is second choice for both colleges</font></i>
-<font color="#FF0000">"s3,s3"</font>,  <i><font color="#9A1900"># student s3 is third  choice for both colleges</font></i>
-<font color="#FF0000">"s4,s4"</font>,  <i><font color="#9A1900"># student s4 is fourth choice for both colleges</font></i>
-<font color="#FF0000">"s5,s5"</font>,  <i><font color="#9A1900"># student s5 is fifth  choice for both colleges</font></i>
-<font color="#FF0000">"s6,  "</font>,  <i><font color="#9A1900"># s6 is sixth   choice for c1, not acceptable to c2</font></i>
-<font color="#FF0000">"s7,  "</font>,  <i><font color="#9A1900"># s7 is seventh choice for c1, not acceptable to c2</font></i>
+<font color="#FF0000">"c1,c2,c3"</font>,  <i><font color="#9A1900"># college names</font></i>
+<font color="#FF0000">" 2, 2, 2"</font>,  <i><font color="#9A1900"># all colleges have 2 available slots</font></i>
+<font color="#FF0000">"s6,s6,s6"</font>,  <i><font color="#9A1900"># student s6 is first choice for all colleges</font></i>
+<font color="#FF0000">"s5,s5,s5"</font>,  <i><font color="#9A1900"># student s5 is 2nd   choice for all colleges</font></i>
+<font color="#FF0000">"s4,s4,s4"</font>,  <i><font color="#9A1900"># student s4 is 3rd   choice for all colleges</font></i>
+<font color="#FF0000">"s3,s3,s3"</font>,  <i><font color="#9A1900"># student s3 is 4th   choice for all colleges</font></i>
+<font color="#FF0000">"s2,s2,s2"</font>,  <i><font color="#9A1900"># student s2 is 5th   choice for all colleges</font></i>
+<font color="#FF0000">"s1,s1,  "</font>,  <i><font color="#9A1900"># student s1 is not acceptable for college c3</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"college.csv"</font>)
@@ -121,22 +117,21 @@ student_file &lt;- <font color="#FF0000">"student.csv"</font>
 college_file &lt;- <font color="#FF0000">"college.csv"</font>
 match        &lt;- student_college(student_file, college_file)
 ok  &lt;- nrow(match) == 5
-ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s1"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c3"</font>
+ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s6"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c3"</font>
 <i><font color="#9A1900"># print the results</font></i>
 print(match)
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
 {    message(<font color="#FF0000">"student2college_xam: OK"</font>)
 } <b><font color="#0000FF">else</font></b> {
-     message(<font color="#FF0000">"student2college_xam: Error"</font>)
-     quit(status = 1)
+     stop(<font color="#FF0000">"student2college_xam: Error"</font>)
 }</tt></pre>
 
-<hr>Input File: example/student_college/s7_c2_a3.R
+<hr>Input File: example/student_college/bad_student.R
 
 </body>
 </html>

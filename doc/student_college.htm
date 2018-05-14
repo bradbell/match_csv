@@ -32,7 +32,7 @@ A:active { color : purple }
 <a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
 </td>
 <td><a href="_contents.htm" target="_top">Prev</a>
-</td><td><a href="student_college_s7_c2_a3.r.htm" target="_top">Next</a>
+</td><td><a href="student_college_get_started.r.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
 <option>Index-&gt;</option>
@@ -59,7 +59,8 @@ A:active { color : purple }
 <td>
 <select onchange='choose_down0(this)'>
 <option>student_college-&gt;</option>
-<option>student_college_s7_c2_a3.R</option>
+<option>student_college_get_started.R</option>
+<option>student_college_bad_student.R</option>
 </select>
 </td>
 <td>
@@ -74,6 +75,7 @@ A:active { color : purple }
 <option>college_file</option>
 <option>match</option>
 <option>Example</option>
+<option>Contents</option>
 </select>
 </td>
 </tr></table><br>
@@ -95,14 +97,17 @@ Finds one of the stable matchings for the college admissions problem.
 <b><big><a name="Conventions" id="Conventions">Conventions</a></big></b>
 
 <ol type="1"><li>
+The data corresponding to one row and one column is called a cell.
+Leading and trailing white space, in a cell, does not matter.
+A cell with only white space, or nothing, is called empty.
+</li><li>
+
 No two students have the same name and no student name is empty.
 </li><li>
 
 No two colleges have the same name and no college name is empty.
 </li><li>
 
-The data corresponding to one row and one column is called a cell.
-A cell with only spaces is treated the same as an empty cell.
 </li></ol>
 
 
@@ -191,17 +196,21 @@ the college for the <code><i>i</i></code>-th pair is
 No student appears which in 
 <code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
 .
-
+The rows of 
+<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
+ are in increasing alphabetical order by
+students name.
 
 <br>
 <br>
 <b><big><a name="Example" id="Example">Example</a></big></b>
+
 <br>
-The file <a href="student_college_s7_c2_a3.r.htm" target="_top"><span style='white-space: nowrap'>student_college_s7_c2_a3.R</span></a>
- contains an example
-and test using <code><font color="blue">student_college</font></code>.
-
-
+<br>
+<b><big><a name="Contents" id="Contents">Contents</a></big></b>
+<br>
+<table>
+<tr><td><a href="student_college_get_started.r.htm" target="_top">student_college_get_started.R</a></td><td>Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;example</td></tr><tr><td><a href="student_college_bad_student.r.htm" target="_top">student_college_bad_student.R</a></td><td>Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;example</td></tr></table>
 <hr>Input File: R/student_college.R
 
 </body>

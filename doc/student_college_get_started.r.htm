@@ -1,0 +1,140 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Student / College Matching example</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Student / College Matching example">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_student_college_get_started.r_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td>
+<a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
+</td>
+<td><a href="student_college.htm" target="_top">Prev</a>
+</td><td><a href="student_college_bad_student.r.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>match_csv</option>
+<option>student_college</option>
+<option>student_college_get_started.R</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>match_csv-&gt;</option>
+<option>student_college</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>student_college-&gt;</option>
+<option>student_college_get_started.R</option>
+<option>student_college_bad_student.R</option>
+</select>
+</td>
+<td>student_college_get_started.R</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Discussion</option>
+<option>Source Code</option>
+</select>
+</td>
+</tr></table><br>
+<center><b><big><big>Student / College Matching example</big></big></b></center>
+<br>
+<b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
+<br>
+This is the 7 students, 2 colleges, 3 available slots example from
+<a href="https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf" target="_top"><span style='white-space: nowrap'>matchingMarkets</span></a>
+.
+The results are checked for correctness as well as being printed
+to standard output.
+
+<br>
+<br>
+<b><big><a name="Source Code" id="Source Code">Source Code</a></big></b>
+
+<pre><tt>
+<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+source(<font color="#FF0000">'R/student_college.R'</font>) <i><font color="#9A1900"># load the student_college function</font></i>
+setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A1900"># put files in build directory</font></i>
+<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+<i><font color="#9A1900"># student.csv</font></i>
+data &lt;- paste(
+<font color="#FF0000">"s1,s2,s3,s4,s5,s6,s7"</font> , <i><font color="#9A1900"># student names</font></i>
+<font color="#FF0000">"c1,c1,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
+<font color="#FF0000">"c2,c2,  ,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>                 <i><font color="#9A1900"># put a newline character between each line above</font></i>
+)
+write(data, <font color="#FF0000">"student.csv"</font>)
+<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+<i><font color="#9A1900"># college.csv</font></i>
+data &lt;- paste(
+<font color="#FF0000">"c1,c2"</font>,  <i><font color="#9A1900"># college names</font></i>
+<font color="#FF0000">" 3, 3"</font>,  <i><font color="#9A1900"># both colleges have 3 available slots</font></i>
+<font color="#FF0000">"s1,s1"</font>,  <i><font color="#9A1900"># student s1 is first  choice for both colleges</font></i>
+<font color="#FF0000">"s2,s2"</font>,  <i><font color="#9A1900"># student s2 is second choice for both colleges</font></i>
+<font color="#FF0000">"s3,s3"</font>,  <i><font color="#9A1900"># student s3 is third  choice for both colleges</font></i>
+<font color="#FF0000">"s4,s4"</font>,  <i><font color="#9A1900"># student s4 is fourth choice for both colleges</font></i>
+<font color="#FF0000">"s5,s5"</font>,  <i><font color="#9A1900"># student s5 is fifth  choice for both colleges</font></i>
+<font color="#FF0000">"s6,  "</font>,  <i><font color="#9A1900"># s6 is sixth   choice for c1, not acceptable to c2</font></i>
+<font color="#FF0000">"s7,  "</font>,  <i><font color="#9A1900"># s7 is seventh choice for c1, not acceptable to c2</font></i>
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
+)
+write(data, <font color="#FF0000">"college.csv"</font>)
+<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+student_file &lt;- <font color="#FF0000">"student.csv"</font>
+college_file &lt;- <font color="#FF0000">"college.csv"</font>
+match        &lt;- student_college(student_file, college_file)
+ok  &lt;- nrow(match) == 5
+ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s1"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
+<i><font color="#9A1900"># print the results</font></i>
+print(match)
+<i><font color="#9A1900">#</font></i>
+<b><font color="#0000FF">if</font></b>( ok )
+{    message(<font color="#FF0000">"student2college_xam: OK"</font>)
+} <b><font color="#0000FF">else</font></b> {
+     stop(<font color="#FF0000">"student2college_xam: Error"</font>)
+}</tt></pre>
+
+<hr>Input File: example/student_college/get_started.R
+
+</body>
+</html>

@@ -3,9 +3,10 @@
 // ------------------------------------------------------------ 
 Keyword = 
 [
-'match_csv  match_csv-20180513: Csv File Interface to Matching Problem Solvers  ',' ',
+'match_csv  match_csv-20180514: Csv File Interface to Matching Problem Solvers  ',' ',
 'student_college  Student / College Matching Problem  ',' ',
-'student_college_s7_c2_a3.R  Student / College Matching example  ',' '
+'student_college_get_started.R  Student / College Matching example  ',' ',
+'student_college_bad_student.R  Student / College Matching example  ',' '
 ]
 
 var MaxList = 100;
