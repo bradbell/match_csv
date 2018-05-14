@@ -75,11 +75,11 @@
 # The rows of $icode match$$ are in increasing alphabetical order by
 # students name.
 #
-# $children%example/student_college/get_started.R
-# %$$
 # $head Example$$
-# The file $cref student_college_get_started.R$$ contains an example
-# and test using $code student_college$$.
+# $childtable%
+#	example/student_college/get_started.R%
+#	example/student_college/bad_student.R
+# %$$
 #
 # $end
 student_college <- function(student_file, college_file)
@@ -103,20 +103,20 @@ student_college <- function(student_file, college_file)
 	#
 	# check number of rows in student_file
 	if( student_size[1] != n_college )
-	{	fmt <- "number of rows in student_file = %d"
-		message( sprintf(fmt, student_size[1] + 1) )
-		fmt <- "n_college + 1 = %d"
-		message( sprintf(fmt, n_college + 1 ) )
-		quit(status = 1)
+	{	fmt  <- "number of rows in student_file = %d"
+		msg1 <- sprintf(fmt, student_size[1] + 1)
+		fmt  <- "n_college + 1 = %d"
+		msg2 <- sprintf(fmt, n_college + 1 )
+		stop( paste(msg1, msg2, sep=', ') )
 	}
 	#
 	# check number of rows in college_file
 	if( college_size[1]  != n_student + 1 )
-	{	fmt <- "number of rows in college_file = %d"
-		message( sprintf(fmt, college_size[1] + 1) )
-		fmt <- "n_student + 2 = %d"
-		message( sprintf(fmt, n_student + 2 ) )
-		quit(status = 1)
+	{	fmt  <- "number of rows in college_file = %d"
+		msg1 <- sprintf(fmt, college_size[1] + 1)
+		fmt  <- "n_student + 2 = %d"
+		msg2 <- sprintf(fmt, n_student + 2 )
+		stop( paste(msg1, msg2, sep=', ') )
 	}
 	# -------------------------------------------------------------------------
 	# names
@@ -143,14 +143,13 @@ student_college <- function(student_file, college_file)
 			{	name <- as.character(name)
 				index <- which( student_name == name )
 				if( length(index) > 1 )
-				{	message("program error")
-					quit(status = 1)
+				{	stop("program error")
 				}
 				if( length(index) == 0 )
-				{	fmt <- "college file, row %d, column %d, name ='%s'"
-					message( sprintf(fmt, i+2, j, name) )
-					message("is not a valid student name")
-					quit(status = 1)
+				{	fmt  <- "college file, row %d, column %d, name ='%s'"
+					msg1 <- sprintf(fmt, i+2, j, name)
+					msg2 <- "is not a valid student name"
+					stop( paste(msg1, msg2, sep=' ') )
 				}
 				college_preference[i,j] <- index
 			}
@@ -170,14 +169,13 @@ student_college <- function(student_file, college_file)
 			{	name  <- as.character(name)
 				index <- which( college_name == name )
 				if( length(index) > 1 )
-				{	message("program error")
-					quit(status = 1)
+				{	stop("program error")
 				}
 				if( length(index) == 0 )
-				{	fmt <- "student file, row %d, column %d, name ='%s'"
-					message( sprintf(fmt, i+1, j, name) )
-					message("is not a valid college name")
-					quit(status = 1)
+				{	fmt  <- "student file, row %d, column %d, name ='%s'"
+					msg1 <- sprintf(fmt, i+1, j, name)
+					msg2 <- "is not a valid college name"
+					stop( paste(msg1, msg2, sep=' ') )
 				}
 				student_preference[i,j] <- index
 			}

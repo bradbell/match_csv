@@ -39,7 +39,7 @@ write(data, "student.csv")
 # college.csv
 data <- paste(
 "c1,c2",  # college names
-"3,3",    # both colleges have 3 available slots
+" 3, 3",  # both colleges have 3 available slots
 "s1,s1",  # student s1 is first  choice for both colleges
 "s2,s2",  # student s2 is second choice for both colleges
 "s3,s3",  # student s3 is third  choice for both colleges
