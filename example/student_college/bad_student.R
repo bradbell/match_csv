@@ -5,7 +5,7 @@
 #              GNU General Public License version 3.0 or later see
 #                  https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
-# $begin student_college_bad_student.R$$ $newlinech #$$
+# $begin bad_student.R$$ $newlinech #$$
 #
 # $section Student / College Matching example$$
 #
@@ -28,7 +28,7 @@ data <- paste(
 "c3,c3,c3,c3,c3,c3" , # college c3 is first choice for all students
 "  ,c2,c2,c2,c2,c2" , # college c2 is second choice for all but student s1
 "  ,c1,c1,c1,c1,c1" , # college c1 is third  choice for all but student s1
-sep="\n"              # put a newline character between each line above
+sep="\n" # put a newline character between each line above
 )
 write(data, "student.csv")
 # ---------------------------------------------------------------------------
@@ -42,7 +42,7 @@ data <- paste(
 "s3,s3,s3",  # student s3 is 4th   choice for all colleges
 "s2,s2,s2",  # student s2 is 5th   choice for all colleges
 "s1,s1,  ",  # student s1 is not acceptable for college c3
-sep="\n"  # put a newline character between each line above
+sep="\n" # put a newline character between each line above
 )
 write(data, "college.csv")
 # ---------------------------------------------------------------------------
@@ -59,8 +59,8 @@ ok  <- ok && match[5,"student"] == "s6" && match[5,"college"] == "c3"
 print(match)
 #
 if( ok )
-{	message("student2college_xam: OK")
+{	message("bad_student: OK")
 } else {
-	stop("student2college_xam: Error")
+	stop("bad_student: Error")
 }
 # END R

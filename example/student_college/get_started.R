@@ -5,7 +5,7 @@
 #              GNU General Public License version 3.0 or later see
 #                  https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
-# $begin student_college_get_started.R$$ $newlinech #$$
+# $begin get_started.R$$ $newlinech #$$
 #
 # $section Student / College Matching example$$
 #
@@ -32,7 +32,7 @@ data <- paste(
 "s1,s2,s3,s4,s5,s6,s7" , # student names
 "c1,c1,c1,c1,c1,c1,c1" , # college c1 is first choice for all students
 "c2,c2,  ,c2,c2,c2,c2" , # student s3 has no second choice of college
-sep="\n"                 # put a newline character between each line above
+sep="\n" # put a newline character between each line above
 )
 write(data, "student.csv")
 # ---------------------------------------------------------------------------
@@ -64,8 +64,8 @@ ok  <- ok && match[5,"student"] == "s5" && match[5,"college"] == "c2"
 print(match)
 #
 if( ok )
-{	message("student2college_xam: OK")
+{	message("get_started: OK")
 } else {
-	stop("student2college_xam: Error")
+	stop("get_started: Error")
 }
 # END R
