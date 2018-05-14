@@ -159,7 +159,7 @@ student_college <- function(student_file, college_file)
 		}
 	}
 	#
-	# college_matrix
+	# new college_matrix
 	# do not worry about overwriting first row becasue already have n_solt
 	vec <- rep(TRUE, (n_student + 1) * n_college)
 	ok  <- matrix(vec, n_student + 1, n_college)
@@ -190,8 +190,8 @@ student_college <- function(student_file, college_file)
 				{	stop("program error")
 				}
 				if( length(index) == 0 )
-				{	fmt  <- "college file, row %d, column %d, name ='%s'"
-					msg1 <- sprintf(fmt, i+2, j, name)
+				{	fmt  <- "college file, row %d, column '%s', name ='%s'"
+					msg1 <- sprintf(fmt, i+2, college_name[j], name)
 					msg2 <- "is not a valid student name"
 					stop( paste(msg1, msg2, sep=' ') )
 				}
@@ -216,8 +216,8 @@ student_college <- function(student_file, college_file)
 				{	stop("program error")
 				}
 				if( length(index) == 0 )
-				{	fmt  <- "student file, row %d, column %d, name ='%s'"
-					msg1 <- sprintf(fmt, i+1, j, name)
+				{	fmt  <- "student file, row %d, column '%s', name ='%s'"
+					msg1 <- sprintf(fmt, i+1, student_name[j], name)
 					msg2 <- "is not a valid college name"
 					stop( paste(msg1, msg2, sep=' ') )
 				}
