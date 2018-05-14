@@ -48,15 +48,18 @@ write(data, "college.csv")
 # ---------------------------------------------------------------------------
 student_file <- "student.csv"
 college_file <- "college.csv"
-match        <- student_college(student_file, college_file)
+match_file   <- "match.csv"
+student_college(student_file, college_file, match_file)
+# ---------------------------------------------------------------------------
+match <- read.csv(
+	match_file, colClasses  = "character", check.names = FALSE
+)
 ok  <- nrow(match) == 5
 ok  <- ok && match[1,"student"] == "s2" && match[1,"college"] == "c1"
 ok  <- ok && match[2,"student"] == "s3" && match[2,"college"] == "c2"
 ok  <- ok && match[3,"student"] == "s4" && match[3,"college"] == "c2"
 ok  <- ok && match[4,"student"] == "s5" && match[4,"college"] == "c3"
 ok  <- ok && match[5,"student"] == "s6" && match[5,"college"] == "c3"
-# print the results
-print(match)
 #
 if( ok )
 {	message("bad_student: OK")

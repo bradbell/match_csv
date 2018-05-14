@@ -14,7 +14,7 @@
 # $section Student / College Matching Problem$$
 #
 # $head Syntax$$
-# $icode%match% <- student_college(%student_file%, %college_file%)
+# $code%student_college(%student_file%, %college_file%, %match_file%)
 # %$$
 #
 # $head Description$$
@@ -41,7 +41,7 @@
 # which is also equal to the number of columns in $icode college_file$$.
 #
 # $head student_file$$
-# This is a comma separated value file (csv file)
+# This is a csv input file
 # with $icode n_student$$ columns and
 # $icode%n_college%+1%$$ rows.
 # The first row contains the names of the students.
@@ -53,7 +53,7 @@
 # not acceptable to a student and are placed at the bottom of the column.
 #
 # $head college_file$$
-# This is a comma separated value file with $icode n_college$$ columns and
+# This is a csv input file with $icode n_college$$ columns and
 # $icode n_student+2$$ rows.
 # The first row contains the names of the colleges.
 # Each column of the second row contains a positive integer that specifies
@@ -66,14 +66,12 @@
 # For each college (column), empty cells are used for the students that are
 # not acceptable to a college and are placed at the bottom of the column.
 #
-# $head match$$
-# The return value $icode match$$ is a data frame with two columns,
+# $head match_file$$
+# This is a csv output file with two columns,
 # one named $code student$$ and the other named $code college$$.
 # Each row of $icode match$$ is a student, college pair.
-# The number of rows $codei%nrow(%match%)%$$ is the number of pairs.
-# The student for the $th i$$ pair is $icode%match%[%i%,"student"]%$$, and
-# the college for the $th i$$ pair is $icode%[%i%,"college"]%$$ respectively.
-# No student appears which in $icode match$$.
+# No student appears more than once and not college appears more than
+# the number of available positions it has.
 # The rows of $icode match$$ are in increasing alphabetical order by
 # students name.
 #
@@ -88,7 +86,7 @@
 empty_cell <- function(cell)
 {	return( is.na(cell) || cell == "" )
 }
-student_college <- function(student_file, college_file)
+student_college <- function(student_file, college_file, match_file)
 {
 	# packages
 	requireNamespace("matchingMarkets")
@@ -237,6 +235,8 @@ student_college <- function(student_file, college_file)
 		s.range   = NULL,
 		c.range   = NULL
 	)
+	# -------------------------------------------------------------------------
+	# match_file
 	matching       <- res["matchings"][[1]]
 	match_number   <- matching[["matching"]]
 	student_match  <- matching[["student"]][match_number == 1]
@@ -250,7 +250,11 @@ student_college <- function(student_file, college_file)
 		student     <- c(student, this_student)
 		college     <- c(college, this_college)
 	}
-	match <- data.frame(student, college)
-	match <- match[order(student),]
-	return(match)
+	match_data_frame <- data.frame(student, college)
+	match_data_frame <- match_data_frame[order(student),]
+	write.csv(
+		match_data_frame, file = match_file, quote = FALSE, row.names = FALSE
+	)
+	# -------------------------------------------------------------------------
+	return
 }
