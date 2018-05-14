@@ -127,38 +127,40 @@ student_college <- function(student_file, college_file)
 	student_name <- colnames(student_data_frame)
 	college_name <- colnames(college_data_frame)
 	# -------------------------------------------------------------------------
+	# matrices
+	student_matrix <- as.matrix( student_data_frame )
+	college_matrix <- as.matrix( college_data_frame )
+	# -------------------------------------------------------------------------
 	# number of slots for j-th college is n_slot[j]
 	n_slot <- rep(0, n_college)
 	for ( j in seq(n_college) )
-	{	# Going straight to integer does not work (R is a crazy language)
-		n_slot[j]      <- as.integer( as.matrix( college_data_frame[1, j] ) )
-	}
+		n_slot[j]      <- as.integer( college_matrix[1, j] )
 	# -------------------------------------------------------------------------
 	# students that will not accept any college that will accept them
 	student_ok = rep(FALSE, n_student)
 	for( j in seq(n_student) )
 	{	for( i in seq(n_college) )
-		{	college <- student_data_frame[i,j]
+		{	college <- student_matrix[i,j]
 			if( ! ( empty_cell(college) || student_ok[j] ) )
-			{	acceptible_student = college_data_frame[,i]
+			{	acceptible_student = college_matrix[,i]
 				if( student_name[j] %in% acceptible_student )
 					student_ok[j] <- TRUE
 			}
 		}
 	}
 	#
-	# college_data_frame
+	# college_matrix
 	# do not worry about overwriting first row becasue already have n_solt
 	vec <- rep(TRUE, (n_student + 1) * n_college)
 	ok  <- matrix(vec, n_student + 1, n_college)
 	for( student in student_name[ ! student_ok ] )
-		ok <- ok & college_data_frame != student
-	college_data_frame[! ok] <- NA
+		ok <- ok & college_matrix != student
+	college_matrix[! ok] <- NA
 	#
 	# new n_student
 	n_student <- sum(student_ok)
-	# new student_data_frame
-	student_data_frame <- student_data_frame[, student_ok]
+	# new student_matrix
+	student_matrix <- student_matrix[, student_ok]
 	# new student_name
 	student_name       <- student_name[student_ok]
 	# -------------------------------------------------------------------------
@@ -168,7 +170,7 @@ student_college <- function(student_file, college_file)
 	)
 	for( j in seq(n_college) )
 	{	for(i in seq(n_student) )
-		{	name  <- college_data_frame[i+1,j]
+		{	name  <- college_matrix[i+1,j]
 			if( empty_cell(name) )
 				college_preference[i,j] <- NA
 			else
@@ -194,7 +196,7 @@ student_college <- function(student_file, college_file)
 	)
 	for( j in seq(n_student) )
 	{	for(i in seq(n_college) )
-		{	name  <- student_data_frame[i,j]
+		{	name  <- student_matrix[i,j]
 			if( empty_cell(name) )
 				student_preference[i,j] <- NA
 			else
