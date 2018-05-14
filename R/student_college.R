@@ -14,7 +14,7 @@
 # $section Student / College Matching Problem$$
 #
 # $head Syntax$$
-# $code%student_college(%student_file%, %college_file%, %match_file%)
+# $codei%student_college(%student_file%, %college_file%, %match_file%)
 # %$$
 #
 # $head Description$$
@@ -69,7 +69,7 @@
 # This is a csv output file with two columns,
 # one named $code student$$ and the other named $code college$$.
 # Each row of $icode match$$ is a student, college pair.
-# No student appears more than once and not college appears more than
+# No student appears more than once and no college appears more than
 # the number of available positions it has.
 # The rows of $icode match$$ are in increasing alphabetical order by
 # students name.
