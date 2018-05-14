@@ -209,16 +209,3 @@ student_college <- function(student_file, college_file)
 	match <- match[order(student),]
 	return(match)
 }
-# ----------------------------------------------------------------------------
-# https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf
-# 7 students, 2 colleges, 3 slots at each college
-#s.prefs <- matrix(c(1,2, 1,2, 1,NA, 1,2, 1,2, 1,2, 1,2), 2,7)
-#c.prefs <- matrix(c(1,2,3,4,5,6,7, 1,2,3,4,5,NA,NA), 7,2)
-#res <- matchingMarkets::hri(s.prefs=s.prefs, c.prefs=c.prefs, nSlots=c(3,3))
-#matching <- res["matchings"][[1]]
-#student  <- matching[["student"]]
-#college  <- matching[["college"]]
-#n_match  <- length(college)
-#message( sprintf("%10s%10s", "student", "college") )
-#for ( i in seq(n_match) )
-  # student s1 is first choice for both colleges#	message( sprintf("%10d%10d", student[i], college[i]) )
