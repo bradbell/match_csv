@@ -29,7 +29,6 @@
 # No two students have the same name and no student name is empty.
 # $lnext
 # No two colleges have the same name and no college name is empty.
-# $lnext
 # $lend
 #
 # $head n_student$$
@@ -78,7 +77,8 @@
 # $head Example$$
 # $childtable%
 #	example/student_college/get_started.R%
-#	example/student_college/bad_student.R
+#	example/student_college/bad_student.R%
+#	example/student_college/bad_college.R
 # %$$
 #
 # $end
@@ -144,7 +144,7 @@ student_college <- function(student_file, college_file, match_file)
 	for ( j in seq(n_college) )
 		n_slot[j]      <- as.integer( college_matrix[1, j] )
 	# -------------------------------------------------------------------------
-	# students that will not accept any college that will accept them
+	# Check for bad students
 	student_ok = rep(FALSE, n_student)
 	for( j in seq(n_student) )
 	{	for( i in seq(n_college) )
@@ -171,6 +171,35 @@ student_college <- function(student_file, college_file, match_file)
 	student_matrix <- student_matrix[, student_ok]
 	# new student_name
 	student_name       <- student_name[student_ok]
+	# -------------------------------------------------------------------------
+	# Check for bad colleges
+	college_ok = rep(FALSE, n_college)
+	for( j in seq(n_college) )
+	{	for( i in seq(n_student) )
+		{	student <- college_matrix[i+1,j]
+			if( ! ( empty_cell(student) || college_ok[j] ) )
+			{	acceptible_college = student_matrix[,student]
+				if( college_name[j] %in% acceptible_college )
+					college_ok[j] <- TRUE
+			}
+		}
+	}
+	#
+	# new student_matrix
+	vec <- rep(TRUE, n_college * n_student)
+	ok  <- matrix(vec, n_college, n_student)
+	for( college in college_name[ ! college_ok ] )
+		ok <- ok & student_matrix != college
+	student_matrix[! ok] <- NA
+	#
+	# new n_college
+	n_college      <- sum(college_ok)
+	# new college_matrix
+	college_matrix <- college_matrix[, college_ok]
+	# new college_name
+	college_name   <- college_name[college_ok]
+	# new n_slot
+	n_slot         <- n_slot[college_ok]
 	# -------------------------------------------------------------------------
 	# college preference matrix
 	college_preference <- matrix(

@@ -22,6 +22,7 @@ echo_eval() {
 list='
 	example/student_college/get_started.R
 	example/student_college/bad_student.R
+	example/student_college/bad_college.R
 '
 ok='yes'
 for file in $list

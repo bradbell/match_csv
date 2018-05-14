@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 # $begin get_started.R$$ $newlinech #$$
 #
-# $section Student / College Matching example$$
+# $section Get Starting Using This Package$$
 #
 # $head Discussion$$
 # This is the 7 students, 2 colleges, 3 available slots example from
