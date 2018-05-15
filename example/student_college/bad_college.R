@@ -51,14 +51,22 @@ college_file <- "college.csv"
 match_file   <- "match.csv"
 student_college(student_file, college_file, match_file)
 # ---------------------------------------------------------------------------
-match <- read.csv(
+match_data_frame <- read.csv(
 	match_file, colClasses  = "character", check.names = FALSE
 )
-ok  <- nrow(match) == 4
-ok  <- ok && match[1,"student"] == "s3" && match[1,"college"] == "c2"
-ok  <- ok && match[2,"student"] == "s4" && match[2,"college"] == "c2"
-ok  <- ok && match[3,"student"] == "s5" && match[3,"college"] == "c1"
-ok  <- ok && match[4,"student"] == "s6" && match[4,"college"] == "c1"
+#
+optimal <- match_data_frame[,"optimal"]
+student <- match_data_frame[,"student"]
+college <- match_data_frame[,"college"]
+matchid <- match_data_frame[,"matchid"]
+#
+ok  <- length(optimal) == 4
+ok  <- ok && student[1] == "s3" && college[1] == "c2"
+ok  <- ok && student[2] == "s4" && college[2] == "c2"
+ok  <- ok && student[3] == "s5" && college[3] == "c1"
+ok  <- ok && student[4] == "s6" && college[4] == "c1"
+for( i in seq(4) )
+	ok <- ok && optimal[i] == "b" && matchid[i] == "1"
 #
 if( ok )
 {	message("bad_college: OK")

@@ -26,6 +26,7 @@ fi
 # -----------------------------------------------------------------------------
 list='
 	example/student_college/get_started.R
+	example/student_college/stable_marriage.R
 	example/student_college/bad_student.R
 	example/student_college/bad_college.R
 '

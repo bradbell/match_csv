@@ -9,6 +9,7 @@
 # $spell
 #	nrow
 #	csv
+#	matchid
 # $$
 #
 # $section Student / College Matching Problem$$
@@ -66,13 +67,27 @@
 # not acceptable to a college and are placed at the bottom of the column.
 #
 # $head match_file$$
-# This is a csv output file with two columns,
-# one named $code student$$ and the other named $code college$$.
-# Each row of $icode match$$ is a student, college pair.
-# No student appears more than once and no college appears more than
-# the number of available positions it has.
-# The rows of $icode match$$ are in increasing alphabetical order by
-# students name.
+# This is a csv output file where each row represents a pairing
+# of a student with a college. It has the columns below and is sorted
+# first by $icode matchid$$ and second by $icode student$$.
+#
+# $subhead student$$
+# The column contains the name of the student for this pairing.
+#
+# $subhead college$$
+# This column contains the name of the college for this pairing.
+#
+# $subhead matchid$$
+# This column contains an integer, starting with one and incrementing by one,
+# that identifies a set of pairs having the same $icode match$$ value.
+# Each set of pairs constitutes a different stable matching.
+#
+# $subhead optimal$$
+# If a cell in this column contains the single character or is empty.
+# If the character is $code s$$, this match is student optimal.
+# If it is $code c$$, this match is college optimal.
+# If it is $code b$$, this match is both student and college optimal.
+# Otherwise, cell is empty.
 #
 # $head Example$$
 # $childtable%
@@ -309,21 +324,44 @@ student_college <- function(student_file, college_file, match_file)
 	)
 	# -------------------------------------------------------------------------
 	# match_file
-	matching       <- res["matchings"][[1]]
-	match_number   <- matching[["matching"]]
-	student_match  <- matching[["student"]][match_number == 1]
-	college_match  <- matching[["college"]][match_number == 1]
-	n_match        <- length(college_match)
-	student        <- c()
-	college        <- c()
-	for ( i in seq(n_match) )
-	{	this_student <- student_name[ as.integer( student_match[i] ) ]
-		this_college <- college_name[ as.integer( college_match[i] ) ]
-		student     <- c(student, this_student)
-		college     <- c(college, this_college)
+	#
+	# match_data_frame
+	pairing <- res["matchings"][[1]]
+	n_pair  <- nrow(pairing)
+	student <- c()
+	college <- c()
+	matchid <- c()
+	optimal <- c()
+	for ( i in seq(n_pair) )
+	{	tmp      <- student_name[ as.integer( pairing[i, "student"] ) ]
+		student  <- c(student, tmp)
+		#
+		tmp      <- college_name[ as.integer( pairing[i, "college"] ) ]
+		college  <- c(college, tmp)
+		#
+		tmp      <- as.character( pairing[i, "matching"] )
+		matchid  <- c(matchid, tmp)
+		#
+		# optimal
+		s_optimal <- as.integer( pairing[i, "sOptimal"] )
+		c_optimal <- as.integer( pairing[i, "cOptimal"] )
+		ch        <- ""
+		if( c_optimal == 1 )
+			ch <- "c"
+		if( s_optimal == 1 )
+		{	if( c_optimal == 1 )
+				ch <- "b"
+		else
+				ch <- "s"
+		}
+		optimal   <- c(optimal, ch)
 	}
-	match_data_frame <- data.frame(student, college)
-	match_data_frame <- match_data_frame[order(student),]
+	match_data_frame <- data.frame(student, college, matchid, optimal)
+	#
+	# sort by match first and then by student
+	match_data_frame <- match_data_frame[order(matchid, student),]
+	#
+	# write file
 	write.csv(
 		match_data_frame, file = match_file, quote = FALSE, row.names = FALSE
 	)
