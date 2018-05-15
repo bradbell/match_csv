@@ -20,7 +20,6 @@ var list_down1 = [
 'stable_marriage.r.htm'
 ];
 var list_current0 = [
-'stable_marriage.r.htm#Under Construction',
 'stable_marriage.r.htm#Discussion',
 'stable_marriage.r.htm#Source Code'
 ];

@@ -120,15 +120,24 @@ college_file &lt;- <font color="#FF0000">"college.csv"</font>
 match_file   &lt;- <font color="#FF0000">"match.csv"</font>
 student_college(student_file, college_file, match_file)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-match &lt;- read.csv(
+match_data_frame &lt;- read.csv(
      match_file, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
 )
-ok  &lt;- nrow(match) == 5
-ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s2"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c3"</font>
-ok  &lt;- ok &amp;&amp; match[5,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s6"</font> &amp;&amp; match[5,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c3"</font>
+print(match_data_frame)
+<i><font color="#9A1900">#</font></i>
+optimal &lt;- match_data_frame[,<font color="#FF0000">"optimal"</font>]
+student &lt;- match_data_frame[,<font color="#FF0000">"student"</font>]
+college &lt;- match_data_frame[,<font color="#FF0000">"college"</font>]
+matchid &lt;- match_data_frame[,<font color="#FF0000">"matchid"</font>]
+<i><font color="#9A1900">#</font></i>
+ok  &lt;- length(optimal) == 5
+ok  &lt;- ok &amp;&amp; student[1] == <font color="#FF0000">"s2"</font> &amp;&amp; college[1] == <font color="#FF0000">"c1"</font>
+ok  &lt;- ok &amp;&amp; student[2] == <font color="#FF0000">"s3"</font> &amp;&amp; college[2] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; student[3] == <font color="#FF0000">"s4"</font> &amp;&amp; college[3] == <font color="#FF0000">"c2"</font>
+ok  &lt;- ok &amp;&amp; student[4] == <font color="#FF0000">"s5"</font> &amp;&amp; college[4] == <font color="#FF0000">"c3"</font>
+ok  &lt;- ok &amp;&amp; student[5] == <font color="#FF0000">"s6"</font> &amp;&amp; college[5] == <font color="#FF0000">"c3"</font>
+<b><font color="#0000FF">for</font></b>( i in seq(5) )
+     ok &lt;- ok &amp;&amp; optimal[i] == <font color="#FF0000">"b"</font> &amp;&amp; matchid[i] == <font color="#FF0000">"1"</font>
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
 {    message(<font color="#FF0000">"bad_student: OK"</font>)

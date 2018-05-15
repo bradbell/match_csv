@@ -27,6 +27,10 @@ var list_current0 = [
 'student_college.htm#student_file',
 'student_college.htm#college_file',
 'student_college.htm#match_file',
+'student_college.htm#match_file.student',
+'student_college.htm#match_file.college',
+'student_college.htm#match_file.matchid',
+'student_college.htm#match_file.optimal',
 'student_college.htm#Example',
 'student_college.htm#Contents'
 ];

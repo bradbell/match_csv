@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>Marriage Problem With The Couples</title>
+<title>Stable Marriage Problem With Three Solutions</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="Marriage Problem With The Couples">
+<meta name="description" id="description" content="Stable Marriage Problem With Three Solutions">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -70,26 +70,21 @@ A:active { color : purple }
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
-<option>Under Construction</option>
 <option>Discussion</option>
 <option>Source Code</option>
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>Marriage Problem With The Couples</big></big></b></center>
-<br>
-<b><big><a name="Under Construction" id="Under Construction">Under Construction</a></big></b>
-<br>
-This example currently crashes and is under investigation.
-
-<br>
+<center><b><big><big>Stable Marriage Problem With Three Solutions</big></big></b></center>
 <br>
 <b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
 <br>
 This is a marriage problem because there is just one slot per college.
-There are three couples and three stable solutions; see
-<a href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_top"><span style='white-space: nowrap'>stabe_marriage_problem</span></a>
+There are three couples and three stable solutions;
+see optimality of the solution for the
+<a href="https://en.wikipedia.org/wiki/Stable_marriage_problem#Optimality_of_the_solution" target="_top"><span style='white-space: nowrap'>stabe_marriage_problem</span></a>
 .
+Only one of the solutions is student optimal.
 
 <br>
 <br>
@@ -104,8 +99,8 @@ setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A19
 data &lt;- paste(
 <font color="#FF0000">"A,B,C"</font> , <i><font color="#9A1900"># student names</font></i>
 <font color="#FF0000">"Y,Z,X"</font> ,
-<font color="#FF0000">"Z,Y,X"</font> ,
-<font color="#FF0000">"X,Z,Y"</font> ,
+<font color="#FF0000">"X,Y,Z"</font> ,
+<font color="#FF0000">"Z,X,Y"</font> ,
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
@@ -126,11 +121,22 @@ college_file &lt;- <font color="#FF0000">"college.csv"</font>
 match_file   &lt;- <font color="#FF0000">"match.csv"</font>
 student_college(student_file, college_file, match_file)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-match &lt;- read.csv(
+match_data_frame &lt;- read.csv(
      match_file, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
 )
-ok &lt;- TRUE
-print(match)
+<i><font color="#9A1900">#</font></i>
+<i><font color="#9A1900"># select the solution that is student optimal</font></i>
+optimal &lt;- match_data_frame[,<font color="#FF0000">"optimal"</font>]
+student &lt;- match_data_frame[,<font color="#FF0000">"student"</font>][ optimal == <font color="#FF0000">"s"</font> ]
+college &lt;- match_data_frame[,<font color="#FF0000">"college"</font>][ optimal == <font color="#FF0000">"s"</font> ]
+matchid &lt;- match_data_frame[,<font color="#FF0000">"matchid"</font>][ optimal == <font color="#FF0000">"s"</font> ]
+<i><font color="#9A1900">#</font></i>
+browser()
+id1 &lt;- matchid[1]
+ok  &lt;- length(student) == 3
+ok  &lt;- ok &amp;&amp; student[1] == <font color="#FF0000">"A"</font> &amp;&amp; college[1] == <font color="#FF0000">"Y"</font> &amp;&amp; matchid == id1
+ok  &lt;- ok &amp;&amp; student[2] == <font color="#FF0000">"B"</font> &amp;&amp; college[2] == <font color="#FF0000">"Z"</font> &amp;&amp; matchid == id1
+ok  &lt;- ok &amp;&amp; student[3] == <font color="#FF0000">"C"</font> &amp;&amp; college[3] == <font color="#FF0000">"X"</font> &amp;&amp; matchid == id1
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
 {    message(<font color="#FF0000">"stable_marriage: OK"</font>)

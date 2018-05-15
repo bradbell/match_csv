@@ -8,7 +8,7 @@ Keyword =
 'get_started.R  Get Starting Using This Package  ',' ',
 'bad_student.R  Example: Student Thinks to Highly of It\'s Self  ',' ',
 'bad_college.R  Example: College Thinks To Highly of It\'s Self  ',' ',
-'stable_marriage.R  Marriage Problem With The Couples  ',' '
+'stable_marriage.R  Stable Marriage Problem With Three Solutions  ',' '
 ]
 
 var MaxList = 100;

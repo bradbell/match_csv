@@ -76,6 +76,10 @@ A:active { color : purple }
 <option>student_file</option>
 <option>college_file</option>
 <option>match_file</option>
+<option>---..student</option>
+<option>---..college</option>
+<option>---..matchid</option>
+<option>---..optimal</option>
 <option>Example</option>
 <option>Contents</option>
 </select>
@@ -177,17 +181,45 @@ not acceptable to a college and are placed at the bottom of the column.
 <br>
 <b><big><a name="match_file" id="match_file">match_file</a></big></b>
 <br>
-This is a csv output file with two columns,
-one named <code><font color="blue">student</font></code> and the other named <code><font color="blue">college</font></code>.
-Each row of 
+This is a csv output file where each row represents a pairing
+of a student with a college. It has the columns below and is sorted
+first by 
+<code><i><font color="black"><span style='white-space: nowrap'>matchid</span></font></i></code>
+ and second by 
+<code><i><font color="black"><span style='white-space: nowrap'>student</span></font></i></code>
+.
+
+<br>
+<br>
+<big><a name="match_file.student" id="match_file.student">student</a></big>
+<br>
+The column contains the name of the student for this pairing.
+
+<br>
+<br>
+<big><a name="match_file.college" id="match_file.college">college</a></big>
+<br>
+This column contains the name of the college for this pairing.
+
+<br>
+<br>
+<big><a name="match_file.matchid" id="match_file.matchid">matchid</a></big>
+<br>
+This column contains an integer, starting with one and incrementing by one,
+that identifies a set of pairs having the same 
 <code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
- is a student, college pair.
-No student appears more than once and no college appears more than
-the number of available positions it has.
-The rows of 
-<code><i><font color="black"><span style='white-space: nowrap'>match</span></font></i></code>
- are in increasing alphabetical order by
-students name.
+ value.
+Each set of pairs constitutes a different stable matching.
+
+<br>
+<br>
+<big><a name="match_file.optimal" id="match_file.optimal">optimal</a></big>
+<br>
+If a cell in this column contains the single character or is empty.
+If the character is <code><font color="blue">s</font></code>, this match is student optimal.
+If it is <code><font color="blue">c</font></code>, this match is college optimal.
+If it is <code><font color="blue">b</font></code>, this match is both student and college optimal.
+Otherwise, cell is empty.
 
 <br>
 <br>
@@ -198,7 +230,7 @@ students name.
 <b><big><a name="Contents" id="Contents">Contents</a></big></b>
 <br>
 <table>
-<tr><td><a href="get_started.r.htm" target="_top">get_started.R</a></td><td>Get&nbsp;Starting&nbsp;Using&nbsp;This&nbsp;Package</td></tr><tr><td><a href="bad_student.r.htm" target="_top">bad_student.R</a></td><td>Example:&nbsp;Student&nbsp;Thinks&nbsp;to&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="bad_college.r.htm" target="_top">bad_college.R</a></td><td>Example:&nbsp;College&nbsp;Thinks&nbsp;To&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="stable_marriage.r.htm" target="_top">stable_marriage.R</a></td><td>Marriage&nbsp;Problem&nbsp;With&nbsp;The&nbsp;Couples</td></tr></table>
+<tr><td><a href="get_started.r.htm" target="_top">get_started.R</a></td><td>Get&nbsp;Starting&nbsp;Using&nbsp;This&nbsp;Package</td></tr><tr><td><a href="bad_student.r.htm" target="_top">bad_student.R</a></td><td>Example:&nbsp;Student&nbsp;Thinks&nbsp;to&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="bad_college.r.htm" target="_top">bad_college.R</a></td><td>Example:&nbsp;College&nbsp;Thinks&nbsp;To&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="stable_marriage.r.htm" target="_top">stable_marriage.R</a></td><td>Stable&nbsp;Marriage&nbsp;Problem&nbsp;With&nbsp;Three&nbsp;Solutions</td></tr></table>
 <hr>Input File: R/student_college.R
 
 </body>
