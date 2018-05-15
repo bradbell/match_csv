@@ -149,6 +149,9 @@ student_college <- function(student_file, college_file, match_file)
 	for ( j in seq(n_college) )
 		n_slot[j]      <- as.integer( college_matrix[1, j] )
 	# -------------------------------------------------------------------------
+	# remove row 1 from college_matrix (no longer needed)
+	college_matrix <- college_matrix[-1,]
+	# -------------------------------------------------------------------------
 	# Check for bad students
 	student_ok = rep(FALSE, n_student)
 	for( j in seq(n_student) )
@@ -163,9 +166,8 @@ student_college <- function(student_file, college_file, match_file)
 	}
 	#
 	# new college_matrix
-	# do not worry about overwriting first row becasue already have n_solt
-	vec <- rep(TRUE, (n_student + 1) * n_college)
-	ok  <- matrix(vec, n_student + 1, n_college)
+	vec <- rep(TRUE, n_student * n_college)
+	ok  <- matrix(vec, n_student, n_college)
 	for( student in student_name[ ! student_ok ] )
 		ok <- ok & college_matrix != student
 	college_matrix[! ok] <- NA
@@ -181,7 +183,7 @@ student_college <- function(student_file, college_file, match_file)
 	college_ok = rep(FALSE, n_college)
 	for( j in seq(n_college) )
 	{	for( i in seq(n_student) )
-		{	student <- college_matrix[i+1,j]
+		{	student <- college_matrix[i,j]
 			if( ! ( empty_cell(student) || college_ok[j] ) )
 			{	acceptible_college = student_matrix[,student]
 				if( college_name[j] %in% acceptible_college )
@@ -212,7 +214,7 @@ student_college <- function(student_file, college_file, match_file)
 	)
 	for( j in seq(n_college) )
 	{	for(i in seq(n_student) )
-		{	name  <- college_matrix[i+1,j]
+		{	name  <- college_matrix[i,j]
 			if( empty_cell(name) )
 				college_preference[i,j] <- NA
 			else
@@ -259,6 +261,7 @@ student_college <- function(student_file, college_file, match_file)
 	}
 	# -------------------------------------------------------------------------
 	# preform the match
+	browser()
 	res <- matchingMarkets::hri(
 		nStudents = n_student,
 		nColleges = n_college,

@@ -6,6 +6,9 @@
 #                 https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
 # $begin stable_marriage.R$$ $newlinech #$$
+# $spell
+#	optimality
+# $$
 #
 # $section Marriage Problem With The Couples$$
 #
@@ -14,8 +17,9 @@
 #
 # $head Discussion$$
 # This is a marriage problem because there is just one slot per college.
-# There are three couples and three stable solutions; see
-# $href%https://en.wikipedia.org/wiki/Stable_marriage_problem%
+# There are three couples and three stable solutions;
+# see optimality of the solution for the
+# $href%https://en.wikipedia.org/wiki/Stable_marriage_problem#Optimality_of_the_solution%
 # stabe_marriage_problem%$$.
 #
 # $head Source Code$$
