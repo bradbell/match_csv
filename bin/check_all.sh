@@ -19,6 +19,11 @@ echo_eval() {
 	eval $*
 }
 # -----------------------------------------------------------------------------
+if which run_omhelp.sh > /dev/null
+then
+	echo_eval run_omhelp.sh doc
+fi
+# -----------------------------------------------------------------------------
 list='
 	example/student_college/get_started.R
 	example/student_college/bad_student.R

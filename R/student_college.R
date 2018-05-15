@@ -78,7 +78,8 @@
 # $childtable%
 #	example/student_college/get_started.R%
 #	example/student_college/bad_student.R%
-#	example/student_college/bad_college.R
+#	example/student_college/bad_college.R%
+#	example/student_college/stable_marriage.R
 # %$$
 #
 # $end
@@ -88,8 +89,12 @@ empty_cell <- function(cell)
 }
 student_college <- function(student_file, college_file, match_file)
 {
-	# packages
+	# load matchingMarketspackages::hri
 	requireNamespace("matchingMarkets")
+	#
+	# Debugging verison of hri (so can put browser() commands in it):
+	# library(rJava)
+	# source('/home/bradbell/repo/matching_markets.git/R/hri.R')
 	# -------------------------------------------------------------------------
 	# read input files
 	#
