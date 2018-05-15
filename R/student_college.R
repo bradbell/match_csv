@@ -84,8 +84,27 @@
 #
 # $end
 # -----------------------------------------------------------------------------
-empty_cell <- function(cell)
-{	return( is.na(cell) || cell == "" )
+empty <- function(x)
+{	return( is.na(x) | x == "" )
+}
+check4duplicates <- function(mat)
+{	result = c()
+	for( j in seq( ncol(mat) ) )
+	{	column <- mat[,j]
+		check  <- column[ ! empty(column) ]
+		for( i in seq( length(check) ) )
+		{	name <- as.character( check[i] )
+			found <- which( name == column )
+			count <- length(found)
+			if( count != 1 )
+			{	result["column"] = j
+				result["first"]  = found[1]
+				result["second"] = found[2]
+				return( result )
+			}
+		}
+	}
+	return( result )
 }
 student_college <- function(student_file, college_file, match_file)
 {
@@ -152,12 +171,29 @@ student_college <- function(student_file, college_file, match_file)
 	# remove row 1 from college_matrix (no longer needed)
 	college_matrix <- college_matrix[-1,]
 	# -------------------------------------------------------------------------
+	result <- check4duplicates(student_matrix)
+	if( length(result) > 0 )
+	{	j   <- result["column"]
+		i1  <- result["first"]
+		i2  <- result["second"]
+		fmt <- "row %d and row %d in column '%s' of student file are equal"
+		stop( sprintf(fmt, i1+1, i2+1, student_name[j]) )
+	}
+	result <- check4duplicates(college_matrix)
+	if( length(result) > 0 )
+	{	j   <- result["column"]
+		i1  <- result["first"]
+		i2  <- result["second"]
+		fmt <- "row %d and row %d in column '%s' of college file are equal"
+		stop( sprintf(fmt, i1+1, i2+1, college_name[j]) )
+	}
+	# -------------------------------------------------------------------------
 	# Check for bad students
 	student_ok = rep(FALSE, n_student)
 	for( j in seq(n_student) )
 	{	for( i in seq(n_college) )
 		{	college <- student_matrix[i,j]
-			if( ! ( empty_cell(college) || student_ok[j] ) )
+			if( ! ( empty(college) || student_ok[j] ) )
 			{	acceptible_student = college_matrix[,college]
 				if( student_name[j] %in% acceptible_student )
 					student_ok[j] <- TRUE
@@ -184,7 +220,7 @@ student_college <- function(student_file, college_file, match_file)
 	for( j in seq(n_college) )
 	{	for( i in seq(n_student) )
 		{	student <- college_matrix[i,j]
-			if( ! ( empty_cell(student) || college_ok[j] ) )
+			if( ! ( empty(student) || college_ok[j] ) )
 			{	acceptible_college = student_matrix[,student]
 				if( college_name[j] %in% acceptible_college )
 					college_ok[j] <- TRUE
@@ -215,7 +251,7 @@ student_college <- function(student_file, college_file, match_file)
 	for( j in seq(n_college) )
 	{	for(i in seq(n_student) )
 		{	name  <- college_matrix[i,j]
-			if( empty_cell(name) )
+			if( empty(name) )
 				college_preference[i,j] <- NA
 			else
 			{	name <- as.character(name)
@@ -241,7 +277,7 @@ student_college <- function(student_file, college_file, match_file)
 	for( j in seq(n_student) )
 	{	for(i in seq(n_college) )
 		{	name  <- student_matrix[i,j]
-			if( empty_cell(name) )
+			if( empty(name) )
 				student_preference[i,j] <- NA
 			else
 			{	name  <- as.character(name)
@@ -261,7 +297,6 @@ student_college <- function(student_file, college_file, match_file)
 	}
 	# -------------------------------------------------------------------------
 	# preform the match
-	browser()
 	res <- matchingMarkets::hri(
 		nStudents = n_student,
 		nColleges = n_college,
