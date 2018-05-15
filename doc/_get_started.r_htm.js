@@ -16,7 +16,8 @@ var list_down2 = [
 var list_down1 = [
 'get_started.r.htm',
 'bad_student.r.htm',
-'bad_college.r.htm'
+'bad_college.r.htm',
+'stable_marriage.r.htm'
 ];
 var list_current0 = [
 'get_started.r.htm#Discussion',

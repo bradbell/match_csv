@@ -8,7 +8,7 @@ var list_across0 = [
 var list_up0 = [
 'match_csv.htm',
 'student_college.htm',
-'bad_student.r.htm'
+'stable_marriage.r.htm'
 ];
 var list_down2 = [
 'student_college.htm'
@@ -20,8 +20,9 @@ var list_down1 = [
 'stable_marriage.r.htm'
 ];
 var list_current0 = [
-'bad_student.r.htm#Discussion',
-'bad_student.r.htm#Source Code'
+'stable_marriage.r.htm#Under Construction',
+'stable_marriage.r.htm#Discussion',
+'stable_marriage.r.htm#Source Code'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

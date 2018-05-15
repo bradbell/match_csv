@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>Example: College Thinks To Highly of It's Self</title>
+<title>Marriage Problem With The Couples</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="Example: College Thinks To Highly of It's Self">
+<meta name="description" id="description" content="Marriage Problem With The Couples">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -23,7 +23,7 @@ A:link { color : blue }
 A:visited { color : purple }
 A:active { color : purple }
 </style>
-<script type='text/javascript' language='JavaScript' src='_bad_college.r_htm.js'>
+<script type='text/javascript' language='JavaScript' src='_stable_marriage.r_htm.js'>
 </script>
 </head>
 <body>
@@ -31,8 +31,8 @@ A:active { color : purple }
 <td>
 <a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
 </td>
-<td><a href="bad_student.r.htm" target="_top">Prev</a>
-</td><td><a href="stable_marriage.r.htm" target="_top">Next</a>
+<td><a href="bad_college.r.htm" target="_top">Prev</a>
+</td><td><a href="_reference.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
 <option>Index-&gt;</option>
@@ -48,7 +48,7 @@ A:active { color : purple }
 <option>Up-&gt;</option>
 <option>match_csv</option>
 <option>student_college</option>
-<option>bad_college.R</option>
+<option>stable_marriage.R</option>
 </select>
 </td>
 <td>
@@ -66,21 +66,30 @@ A:active { color : purple }
 <option>stable_marriage.R</option>
 </select>
 </td>
-<td>bad_college.R</td>
+<td>stable_marriage.R</td>
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
+<option>Under Construction</option>
 <option>Discussion</option>
 <option>Source Code</option>
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>Example: College Thinks To Highly of It's Self</big></big></b></center>
+<center><b><big><big>Marriage Problem With The Couples</big></big></b></center>
+<br>
+<b><big><a name="Under Construction" id="Under Construction">Under Construction</a></big></b>
+<br>
+This example currently crashes and is under investigation.
+
+<br>
 <br>
 <b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
 <br>
-This is a case where a college will only accept the best students,
-but they will not accept the college.
+This is a marriage problem because there is just one slot per college.
+There are three couples and three stable solutions; see
+<a href="https://en.wikipedia.org/wiki/Stable_marriage_problem" target="_top"><span style='white-space: nowrap'>stabe_marriage_problem</span></a>
+.
 
 <br>
 <br>
@@ -93,25 +102,22 @@ setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A19
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 <i><font color="#9A1900"># student.csv</font></i>
 data &lt;- paste(
-<font color="#FF0000">"s1,s2,s3,s4,s5,s6"</font>, <i><font color="#9A1900"># student names</font></i>
-<font color="#FF0000">"c1,c1,c1,c1,c1,c1"</font>, <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
-<font color="#FF0000">"c2,c2,c2,c2,c2,c2"</font>, <i><font color="#9A1900"># college c2 is second choice for all students</font></i>
-<font color="#FF0000">"c3,c3,c3,c3,  ,  "</font>, <i><font color="#9A1900"># college c3 is not acceptible to s5 and s6</font></i>
+<font color="#FF0000">"A,B,C"</font> , <i><font color="#9A1900"># student names</font></i>
+<font color="#FF0000">"Y,Z,X"</font> ,
+<font color="#FF0000">"Z,Y,X"</font> ,
+<font color="#FF0000">"X,Z,Y"</font> ,
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
 <i><font color="#9A1900"># college.csv</font></i>
 data &lt;- paste(
-<font color="#FF0000">"c1,c2,c3"</font>,  <i><font color="#9A1900"># college names</font></i>
-<font color="#FF0000">" 2, 2, 2"</font>,  <i><font color="#9A1900"># all colleges have 2 available slots</font></i>
-<font color="#FF0000">"s6,s6,s6"</font>,  <i><font color="#9A1900"># student s6 is first choice for all colleges</font></i>
-<font color="#FF0000">"s5,s5,s5"</font>,  <i><font color="#9A1900"># student s5 is 2nd   choice for all colleges</font></i>
-<font color="#FF0000">"s4,s4,  "</font>,  <i><font color="#9A1900"># student s4 is 3rd   choice for all colleges except c3</font></i>
-<font color="#FF0000">"s3,s3,  "</font>,  <i><font color="#9A1900"># student s3 is 4th   choice for all colleges except c3</font></i>
-<font color="#FF0000">"s2,s2,  "</font>,  <i><font color="#9A1900"># student s2 is 5th   choice for all colleges except c3</font></i>
-<font color="#FF0000">"s1,s1,  "</font>,  <i><font color="#9A1900"># student s1 is 6th   choice for all colleges except c3</font></i>
-sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
+<font color="#FF0000">"X,Y,Z"</font> , <i><font color="#9A1900"># college names</font></i>
+<font color="#FF0000">"1,1,1"</font> ,
+<font color="#FF0000">"B,C,A"</font> ,
+<font color="#FF0000">"A,B,C"</font> ,
+<font color="#FF0000">"C,A,B"</font> ,
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"college.csv"</font>)
 <i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
@@ -123,19 +129,16 @@ student_college(student_file, college_file, match_file)
 match &lt;- read.csv(
      match_file, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
 )
-ok  &lt;- nrow(match) == 4
-ok  &lt;- ok &amp;&amp; match[1,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s3"</font> &amp;&amp; match[1,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; match[2,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s4"</font> &amp;&amp; match[2,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c2"</font>
-ok  &lt;- ok &amp;&amp; match[3,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s5"</font> &amp;&amp; match[3,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
-ok  &lt;- ok &amp;&amp; match[4,<font color="#FF0000">"student"</font>] == <font color="#FF0000">"s6"</font> &amp;&amp; match[4,<font color="#FF0000">"college"</font>] == <font color="#FF0000">"c1"</font>
+ok &lt;- TRUE
+print(match)
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
-{    message(<font color="#FF0000">"bad_college: OK"</font>)
+{    message(<font color="#FF0000">"stable_marriage: OK"</font>)
 } <b><font color="#0000FF">else</font></b> {
-     stop(<font color="#FF0000">"bad_college: Error"</font>)
+     stop(<font color="#FF0000">"stable_marriage: Error"</font>)
 }</tt></pre>
 
-<hr>Input File: example/student_college/bad_college.R
+<hr>Input File: example/student_college/stable_marriage.R
 
 </body>
 </html>
