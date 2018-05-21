@@ -8,13 +8,53 @@
 $begin match_csv$$
 $spell
 	csv
+	https://github.com/bradbell
+	setwd
+	getwd
+	dir
 $$
 
 $section
 match_csv-20180515: Csv File Interface to Matching Problem Solvers
 $$
 
-$childtable%R/student_college.R
+$contents%
+	R/student_college.R
 %$$
+
+$head Installation$$
+$list number$$
+Install Java, see the web site
+$href%https://www.java.com/en/download/%$$.
+$lnext
+Install R, see the web site
+$href%https://www.r-project.org/%$$.
+$lnext
+Install Git, see the web site
+$href%https://git-scm.com/downloads%$$.
+$lnext
+Download match_csv by executing the following command:
+$codep
+	git clone https://github.com/bradbell/match_csv.git match_csv.git
+$$
+$lnext
+Open R, use $code getwd()$$ to determine your current directory.
+Use $codei%setwd('%path%')%$$ to change into the $code match_csv.git$$
+directory where $icode path$$ is the path on your
+$code match_csv.git$$ directory.
+$lnext
+Execute the command
+$code dir.create('build')$$ to create the
+$code match_csv.git/build$$ directory.
+$lnext
+Execute the command
+$codei%
+	source('example/student_college/get_started.R')
+%$$
+This runs the $cref get_started.R$$ example.
+After running this example, the $code build$$ directory will contain
+the two input files $code student.csv$$, $code college.csv$$
+and the output file $code match.csv$$
+$lend
 
 $end
