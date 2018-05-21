@@ -12,7 +12,8 @@ var list_down0 = [
 'student_college.htm'
 ];
 var list_current0 = [
-'match_csv.htm#Contents'
+'match_csv.htm#Contents',
+'match_csv.htm#Installation'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

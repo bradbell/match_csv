@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>match_csv-20180515: Csv File Interface to Matching Problem Solvers</title>
+<title>match_csv-20180521: Csv File Interface to Matching Problem Solvers</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="match_csv-20180515: Csv File Interface to Matching Problem Solvers">
+<meta name="description" id="description" content="match_csv-20180521: Csv File Interface to Matching Problem Solvers">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -58,15 +58,73 @@ A:active { color : purple }
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
 <option>Contents</option>
+<option>Installation</option>
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>match_csv-20180515: Csv File Interface to Matching Problem Solvers</big></big></b></center>
+<center><b><big><big>match_csv-20180521: Csv File Interface to Matching Problem Solvers</big></big></b></center>
 <br>
 <b><big><a name="Contents" id="Contents">Contents</a></big></b>
 <br>
-<table>
-<tr><td><a href="_contents.htm" target="_top">_contents</a></td><td>Table&nbsp;of&nbsp;Contents</td></tr><tr><td><a href="student_college.htm" target="_top">student_college</a></td><td>Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;Problem</td></tr><tr><td><a href="_reference.htm" target="_top">_reference</a></td><td>Alphabetic&nbsp;Listing&nbsp;of&nbsp;Cross&nbsp;Reference&nbsp;Tags</td></tr><tr><td><a href="_index.htm" target="_top">_index</a></td><td>Keyword&nbsp;Index</td></tr><tr><td><a href="_search.htm" target="_top">_search</a></td><td>Search&nbsp;This&nbsp;Web&nbsp;Site</td></tr><tr><td><a href="_external.htm" target="_top">_external</a></td><td>External&nbsp;Internet&nbsp;References</td></tr></table>
+<div><a href="_contents.htm" target="_top">Table&nbsp;of&nbsp;Contents</a><br>
+<a href="student_college.htm" target="_top">Student&nbsp;/&nbsp;College&nbsp;Matching&nbsp;Problem</a><br>
+<a href="_reference.htm" target="_top">Alphabetic&nbsp;Listing&nbsp;of&nbsp;Cross&nbsp;Reference&nbsp;Tags</a><br>
+<a href="_index.htm" target="_top">Keyword&nbsp;Index</a><br>
+<a href="_search.htm" target="_top">Search&nbsp;This&nbsp;Web&nbsp;Site</a><br>
+<a href="_external.htm" target="_top">External&nbsp;Internet&nbsp;References</a><br>
+</div><br>
+<b><big><a name="Installation" id="Installation">Installation</a></big></b>
+
+<ol type="1"><li>
+Install Java, see the web site
+<a href="https://www.java.com/en/download/" target="_top"><span style='white-space: nowrap'>https://www.java.com/en/download/</span></a>
+.
+</li><li>
+
+Install R, see the web site
+<a href="https://www.r-project.org/" target="_top"><span style='white-space: nowrap'>https://www.r-project.org/</span></a>
+.
+</li><li>
+
+Install Git, see the web site
+<a href="https://git-scm.com/downloads" target="_top"><span style='white-space: nowrap'>https://git-scm.com/downloads</span></a>
+.
+</li><li>
+
+Download match_csv by executing the following command:
+<code><font color='blue'><pre style='display:inline'> 
+     git clone https://github.com/bradbell/match_csv.git match_csv.git
+</pre></font></code>
+</li><li>
+Open R, use <code><font color="blue">getwd()</font></code> to determine your current directory.
+Use 
+<code><font color="blue"><span style='white-space: nowrap'>setwd('</span></font><i><font color="black"><span style='white-space: nowrap'>path</span></font></i><font color="blue"><span style='white-space: nowrap'>')</span></font></code>
+ to change into the <code><font color="blue">match_csv.git</font></code>
+directory where 
+<code><i><font color="black"><span style='white-space: nowrap'>path</span></font></i></code>
+ is the path on your
+<code><font color="blue">match_csv.git</font></code> directory.
+</li><li>
+
+Execute the command
+<code><font color="blue">dir.create('build')</font></code> to create the
+<code><font color="blue">match_csv.git/build</font></code> directory.
+</li><li>
+
+Execute the command
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source('example/student_college/get_started.R')<br>
+</span></font></code>
+This runs the <a href="get_started.r.htm" target="_top"><span style='white-space: nowrap'>get_started.R</span></a>
+ example.
+After running this example, the <code><font color="blue">build</font></code> directory will contain
+the two input files <code><font color="blue">student.csv</font></code>, <code><font color="blue">college.csv</font></code>
+and the output file <code><font color="blue">match.csv</font></code>
+</li></ol>
+
+
+
 <hr>Input File: doc.omh
 
 </body>
