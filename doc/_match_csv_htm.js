@@ -13,7 +13,12 @@ var list_down0 = [
 ];
 var list_current0 = [
 'match_csv.htm#Contents',
-'match_csv.htm#Installation'
+'match_csv.htm#Installation',
+'match_csv.htm#Installation.Java',
+'match_csv.htm#Installation.R',
+'match_csv.htm#Installation.Download match_csv',
+'match_csv.htm#Installation.matchingMarkets',
+'match_csv.htm#Installation.Get Started'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

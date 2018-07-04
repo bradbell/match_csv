@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>match_csv-20180521: Csv File Interface to Matching Problem Solvers</title>
+<title>match_csv-20180704: Csv File Interface to Matching Problem Solvers</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="match_csv-20180521: Csv File Interface to Matching Problem Solvers">
+<meta name="description" id="description" content="match_csv-20180704: Csv File Interface to Matching Problem Solvers">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -59,10 +59,15 @@ A:active { color : purple }
 <option>Headings-&gt;</option>
 <option>Contents</option>
 <option>Installation</option>
+<option>---..Java</option>
+<option>---..R</option>
+<option>---..Download match_csv</option>
+<option>---..matchingMarkets</option>
+<option>---..Get Started</option>
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>match_csv-20180521: Csv File Interface to Matching Problem Solvers</big></big></b></center>
+<center><b><big><big>match_csv-20180704: Csv File Interface to Matching Problem Solvers</big></big></b></center>
 <br>
 <b><big><a name="Contents" id="Contents">Contents</a></big></b>
 <br>
@@ -75,40 +80,70 @@ A:active { color : purple }
 </div><br>
 <b><big><a name="Installation" id="Installation">Installation</a></big></b>
 
-<ol type="1"><li>
+
+<br>
+<br>
+<big><a name="Installation.Java" id="Installation.Java">Java</a></big>
+<br>
 Install Java, see the web site
 <a href="https://www.java.com/en/download/" target="_top"><span style='white-space: nowrap'>https://www.java.com/en/download/</span></a>
 .
-</li><li>
 
+<br>
+<br>
+<big><a name="Installation.R" id="Installation.R">R</a></big>
+<br>
 Install R, see the web site
 <a href="https://www.r-project.org/" target="_top"><span style='white-space: nowrap'>https://www.r-project.org/</span></a>
 .
-</li><li>
 
-Install Git, see the web site
-<a href="https://git-scm.com/downloads" target="_top"><span style='white-space: nowrap'>https://git-scm.com/downloads</span></a>
-.
-</li><li>
+<br>
+<br>
+<big><a name="Installation.Download match_csv" id="Installation.Download match_csv">Download match_csv</a></big>
+<br>
+If you have or can install git
+<code><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code><a href="https://git-scm.com/downloads" target="_top"><span style='white-space: nowrap'>https://git-scm.com/downloads</span></a>
 
-Download match_csv by executing the following command:
+<code><span style='white-space: nowrap'><br>
+</span></code>download match_csv by executing the following command:
 <code><font color='blue'><pre style='display:inline'> 
      git clone https://github.com/bradbell/match_csv.git match_csv.git
 </pre></font></code>
-</li><li>
+In this case the distribution directory is <code><font color="blue">match_csv.git</font></code>.
+Otherwise, choose one of the versions on match_csv
+<code><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code><a href="https://github.com/bradbell/match_csv/releases" target="_top"><span style='white-space: nowrap'>https://github.com/bradbell/match_csv/releases</span></a>
+
+<code><span style='white-space: nowrap'><br>
+</span></code>page and unpack it.
+In this case the distribution directory is the one created when you unpack it.
+
+<br>
+<br>
+<big><a name="Installation.matchingMarkets" id="Installation.matchingMarkets">matchingMarkets</a></big>
+<br>
+Open R and following the install instructions for
+<a href="matchingMarkets" target="_top"><span style='white-space: nowrap'>https://github.com/thiloklein/matchingMarkets</span></a>
+.
+
+<br>
+<br>
+<big><a name="Installation.Get Started" id="Installation.Get Started">Get Started</a></big>
+
+<ol type="1"><li>
 Open R, use <code><font color="blue">getwd()</font></code> to determine your current directory.
 Use 
 <code><font color="blue"><span style='white-space: nowrap'>setwd('</span></font><i><font color="black"><span style='white-space: nowrap'>path</span></font></i><font color="blue"><span style='white-space: nowrap'>')</span></font></code>
- to change into the <code><font color="blue">match_csv.git</font></code>
-directory where 
+ to change into the distribution directory
+where 
 <code><i><font color="black"><span style='white-space: nowrap'>path</span></font></i></code>
- is the path on your
-<code><font color="blue">match_csv.git</font></code> directory.
+ is the path on your distribution directory.
 </li><li>
 
 Execute the command
-<code><font color="blue">dir.create('build')</font></code> to create the
-<code><font color="blue">match_csv.git/build</font></code> directory.
+<code><font color="blue">dir.create('build')</font></code> to create the <code><font color="blue">build</font></code> subdirectory
+of the distribution directory.
 </li><li>
 
 Execute the command
