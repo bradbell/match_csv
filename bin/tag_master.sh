@@ -27,7 +27,7 @@ then
 	git status -s
 	exit 1
 fi
-if git --list | grep "$version"
+if git tag --list | grep "$version"
 then
 	echo "The git tag $version alread exists. Delete the old version ?"
 	echo "	git tag -d $version"
