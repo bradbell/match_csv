@@ -23,29 +23,47 @@ $contents%
 %$$
 
 $head Installation$$
-$list number$$
+
+$subhead Java$$
 Install Java, see the web site
 $href%https://www.java.com/en/download/%$$.
-$lnext
+
+$subhead R$$
 Install R, see the web site
 $href%https://www.r-project.org/%$$.
-$lnext
-Install Git, see the web site
-$href%https://git-scm.com/downloads%$$.
-$lnext
-Download match_csv by executing the following command:
+
+$subhead Download match_csv$$
+If you have or can install git
+$pre
+	$$$href%https://git-scm.com/downloads%$$
+$pre
+$$
+download match_csv by executing the following command:
 $codep
 	git clone https://github.com/bradbell/match_csv.git match_csv.git
 $$
-$lnext
+In this case the distribution directory is $code match_csv.git$$.
+Otherwise, choose one of the versions on match_csv
+$pre
+	$$$href%https://github.com/bradbell/match_csv/releases%$$
+$pre
+$$
+page and unpack it.
+In this case the distribution directory is the one created when you unpack it.
+
+$subhead matchingMarkets$$
+Open R and following the install instructions for
+$href%matchingMarkets%https://github.com/thiloklein/matchingMarkets%$$.
+
+$subhead Get Started$$
+$list number$$
 Open R, use $code getwd()$$ to determine your current directory.
-Use $codei%setwd('%path%')%$$ to change into the $code match_csv.git$$
-directory where $icode path$$ is the path on your
-$code match_csv.git$$ directory.
+Use $codei%setwd('%path%')%$$ to change into the distribution directory
+where $icode path$$ is the path on your distribution directory.
 $lnext
 Execute the command
-$code dir.create('build')$$ to create the
-$code match_csv.git/build$$ directory.
+$code dir.create('build')$$ to create the $code build$$ subdirectory
+of the distribution directory.
 $lnext
 Execute the command
 $codei%
