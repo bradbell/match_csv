@@ -12,6 +12,7 @@ $spell
 	setwd
 	getwd
 	dir
+	gmp
 $$
 
 $section
@@ -54,6 +55,19 @@ In this case the distribution directory is the one created when you unpack it.
 $subhead matchingMarkets$$
 Open R and following the install instructions for
 $href%matchingMarkets%https://github.com/thiloklein/matchingMarkets%$$.
+$list number$$
+If you have an error related to the $code gmp$$ package,
+make sure the related libraries are installed; see
+$href%https://en.wikipedia.org/wiki/GNU_Multiple_Precision_Arithmetic_Library
+	%gmp
+%$$
+$lnext
+If you have problems loading $code rJava$$; see
+$href%https://stackoverflow.com/questions/3311940/r-rjava-package-install-failing
+	%R: rJava package install failing
+%$$
+$lend
+
 
 $subhead Get Started$$
 $list number$$
