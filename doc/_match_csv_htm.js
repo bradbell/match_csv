@@ -17,6 +17,7 @@ var list_current0 = [
 'match_csv.htm#Installation.Java',
 'match_csv.htm#Installation.R',
 'match_csv.htm#Installation.Download match_csv',
+'match_csv.htm#Installation.Distribution Directory',
 'match_csv.htm#Installation.matchingMarkets',
 'match_csv.htm#Installation.Get Started'
 ];

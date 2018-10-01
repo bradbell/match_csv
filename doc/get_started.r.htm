@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>Get Starting Using This Package</title>
+<title>Get Starting Using student_college</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="Get Starting Using This Package">
+<meta name="description" id="description" content="Get Starting Using student_college">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -70,41 +70,78 @@ A:active { color : purple }
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
-<option>Discussion</option>
-<option>Source Code</option>
+<option>Run This Example</option>
+<option>Load The student_college Routine</option>
+<option>Create The Student File</option>
+<option>Create the College File</option>
+<option>Run student_college</option>
+<option>Check Match</option>
+<option>---..Read Match File</option>
+<option>---..Extract Optimal Match</option>
+<option>---..Check Optimal Match</option>
+<option>Report Check Result</option>
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>Get Starting Using This Package</big></big></b></center>
+<center><b><big><big>Get Starting Using student_college</big></big></b></center>
 <br>
-<b><big><a name="Discussion" id="Discussion">Discussion</a></big></b>
-<br>
-This is the 7 students, 2 colleges, 3 available slots example from
-<a href="https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf" target="_top"><span style='white-space: nowrap'>matchingMarkets</span></a>
-.
-The results are checked for correctness as well as being printed
-to standard output.
+<b><big><a name="Run This Example" id="Run This Example">Run This Example</a></big></b>
+
+<ol type="1"><li>
+Change into the
+<a href="match_csv.htm#Installation.Distribution Directory" target="_top"><span style='white-space: nowrap'>distribution&nbsp;directory</span></a>
+,
+</li><li>
+
+If it does not yet exist, create the <code><font color="blue">build</font></code> sub-directory.
+</li><li>
+
+Start the R program.
+</li><li>
+
+Execute the following R command.
+<pre style='display:inline'><tt>
+     source(<font color="#FF0000">'example/student_college/get_started.R'</font>)
+</tt></pre>
+</li></ol>
+Below is a step by step explanation of this example
+together with the corresponding R source code.
 
 <br>
 <br>
-<b><big><a name="Source Code" id="Source Code">Source Code</a></big></b>
-
-<pre><tt>
-<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-source(<font color="#FF0000">'R/student_college.R'</font>) <i><font color="#9A1900"># load the student_college function</font></i>
-setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A1900"># put files in build directory</font></i>
-<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-<i><font color="#9A1900"># student.csv</font></i>
-data &lt;- paste(
+<b><big><a name="Load The student_college Routine" id="Load The student_college Routine">Load The student_college Routine</a></big></b>
+<br>
+The following R commands loads the <code><font color="blue">student_college</font></code> routine
+into your R session.
+You must do this before you can run the <code><font color="blue">student_college</font></code> routine.
+<pre style='display:inline'><tt>
+source(<font color="#FF0000">'R/student_college.R'</font>)
+</tt></pre>
+<br>
+<b><big><a name="Create The Student File" id="Create The Student File">Create The Student File</a></big></b>
+<br>
+The R commands below create the
+<a href="student_college.htm#student_file" target="_top"><span style='white-space: nowrap'>student_file</span></a>
+ for this example.
+You could use a spread sheet to create this file.
+<pre><tt>data &lt;- paste(
 <font color="#FF0000">"s1,s2,s3,s4,s5,s6,s7"</font> , <i><font color="#9A1900"># student names</font></i>
 <font color="#FF0000">"c1,c1,c1,c1,c1,c1,c1"</font> , <i><font color="#9A1900"># college c1 is first choice for all students</font></i>
 <font color="#FF0000">"c2,c2,  ,c2,c2,c2,c2"</font> , <i><font color="#9A1900"># student s3 has no second choice of college</font></i>
-sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
+sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>                 <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
-write(data, <font color="#FF0000">"student.csv"</font>)
-<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-<i><font color="#9A1900"># college.csv</font></i>
-data &lt;- paste(
+write(data, <font color="#FF0000">"build/student.csv"</font>)</tt></pre>
+Note that this example has 7 students.
+
+<br>
+<br>
+<b><big><a name="Create the College File" id="Create the College File">Create the College File</a></big></b>
+<br>
+The R commands below create the
+<a href="student_college.htm#college_file" target="_top"><span style='white-space: nowrap'>college_file</span></a>
+ for this example.
+You could use a spread sheet to create this file.
+<pre><tt>data &lt;- paste(
 <font color="#FF0000">"c1,c2"</font>,  <i><font color="#9A1900"># college names</font></i>
 <font color="#FF0000">" 3, 3"</font>,  <i><font color="#9A1900"># both colleges have 3 available slots</font></i>
 <font color="#FF0000">"s1,s1"</font>,  <i><font color="#9A1900"># student s1 is first  choice for both colleges</font></i>
@@ -116,32 +153,60 @@ data &lt;- paste(
 <font color="#FF0000">"s7,  "</font>,  <i><font color="#9A1900"># s7 is seventh choice for c1, not acceptable to c2</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
-write(data, <font color="#FF0000">"college.csv"</font>)
-<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
-student_file &lt;- <font color="#FF0000">"student.csv"</font>
-college_file &lt;- <font color="#FF0000">"college.csv"</font>
-match_file   &lt;- <font color="#FF0000">"match.csv"</font>
-student_college(student_file, college_file, match_file)
-<i><font color="#9A1900"># ---------------------------------------------------------------------------</font></i>
+write(data, <font color="#FF0000">"build/college.csv"</font>)</tt></pre>
+Note that this example has
+2 colleges and 3 available slots available for each college.
+
+<br>
+<br>
+<b><big><a name="Run student_college" id="Run student_college">Run student_college</a></big></b>
+<br>
+The R commands below run the <a href="student_college.htm" target="_top"><span style='white-space: nowrap'>student_college</span></a>
+ routine
+for this example.
+Normally you would change the file names when running this routine.
+<pre><tt>student_file &lt;- <font color="#FF0000">"build/student.csv"</font>
+college_file &lt;- <font color="#FF0000">"build/college.csv"</font>
+match_file   &lt;- <font color="#FF0000">"build/match.csv"</font>
+student_college(student_file, college_file, match_file)</tt></pre>
+<br>
+<b><big><a name="Check Match" id="Check Match">Check Match</a></big></b>
+<br>
+The R commands below check the match file for this example.
+You could load this file into a spread sheet
+to see the match.
+
+<br>
+<br>
+<big><a name="Check Match.Read Match File" id="Check Match.Read Match File">Read Match File</a></big>
+
+<pre style='display:inline'><tt>
 match_data_frame &lt;- read.csv(
-     match_file, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
+     <font color="#FF0000">"build/match.csv"</font>, colClasses  = <font color="#FF0000">"character"</font>, check.names = FALSE
 )
-<i><font color="#9A1900">#</font></i>
-optimal &lt;- match_data_frame[,<font color="#FF0000">"optimal"</font>]
+</tt></pre>
+<br>
+<big><a name="Check Match.Extract Optimal Match" id="Check Match.Extract Optimal Match">Extract Optimal Match</a></big>
+
+<pre><tt>optimal &lt;- match_data_frame[,<font color="#FF0000">"optimal"</font>]
 student &lt;- match_data_frame[,<font color="#FF0000">"student"</font>]
 college &lt;- match_data_frame[,<font color="#FF0000">"college"</font>]
-matchid &lt;- match_data_frame[,<font color="#FF0000">"matchid"</font>]
-<i><font color="#9A1900">#</font></i>
-ok  &lt;- length(optimal) == 5
+matchid &lt;- match_data_frame[,<font color="#FF0000">"matchid"</font>]</tt></pre>
+<br>
+<big><a name="Check Match.Check Optimal Match" id="Check Match.Check Optimal Match">Check Optimal Match</a></big>
+
+<pre><tt>ok  &lt;- length(optimal) == 5
 ok  &lt;- ok &amp;&amp; student[1] == <font color="#FF0000">"s1"</font> &amp;&amp; college[1] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; student[2] == <font color="#FF0000">"s2"</font> &amp;&amp; college[2] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; student[3] == <font color="#FF0000">"s3"</font> &amp;&amp; college[3] == <font color="#FF0000">"c1"</font>
 ok  &lt;- ok &amp;&amp; student[4] == <font color="#FF0000">"s4"</font> &amp;&amp; college[4] == <font color="#FF0000">"c2"</font>
 ok  &lt;- ok &amp;&amp; student[5] == <font color="#FF0000">"s5"</font> &amp;&amp; college[5] == <font color="#FF0000">"c2"</font>
 <b><font color="#0000FF">for</font></b>( i in seq(5) )
-     ok &lt;- ok &amp;&amp; optimal[i] == <font color="#FF0000">"b"</font> &amp;&amp; matchid[i] == <font color="#FF0000">"1"</font>
-<i><font color="#9A1900">#</font></i>
-<b><font color="#0000FF">if</font></b>( ok )
+     ok &lt;- ok &amp;&amp; optimal[i] == <font color="#FF0000">"b"</font> &amp;&amp; matchid[i] == <font color="#FF0000">"1"</font></tt></pre>
+<br>
+<b><big><a name="Report Check Result" id="Report Check Result">Report Check Result</a></big></b>
+
+<pre><tt><b><font color="#0000FF">if</font></b>( ok )
 {    message(<font color="#FF0000">"get_started: OK"</font>)
 } <b><font color="#0000FF">else</font></b> {
      stop(<font color="#FF0000">"get_started: Error"</font>)

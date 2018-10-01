@@ -20,8 +20,16 @@ var list_down1 = [
 'stable_marriage.r.htm'
 ];
 var list_current0 = [
-'get_started.r.htm#Discussion',
-'get_started.r.htm#Source Code'
+'get_started.r.htm#Run This Example',
+'get_started.r.htm#Load The student_college Routine',
+'get_started.r.htm#Create The Student File',
+'get_started.r.htm#Create the College File',
+'get_started.r.htm#Run student_college',
+'get_started.r.htm#Check Match',
+'get_started.r.htm#Check Match.Read Match File',
+'get_started.r.htm#Check Match.Extract Optimal Match',
+'get_started.r.htm#Check Match.Check Optimal Match',
+'get_started.r.htm#Report Check Result'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;
