@@ -75,24 +75,7 @@ $href%https://stackoverflow.com/questions/3311940/r-rjava-package-install-failin
 $lend
 
 
-$subhead Get Started$$
-$list number$$
-Open R, use $code getwd()$$ to determine your current directory.
-Use $codei%setwd('%path%')%$$ to change into the distribution directory
-where $icode path$$ is the path on your distribution directory.
-$lnext
-Execute the command
-$code dir.create('build')$$ to create the $code build$$ subdirectory
-of the distribution directory.
-$lnext
-Execute the command
-$codei%
-	source('example/student_college/get_started.R')
-%$$
-This runs the $cref get_started.R$$ example.
-After running this example, the $code build$$ directory will contain
-the two input files $code student.csv$$, $code college.csv$$
-and the output file $code match.csv$$
-$lend
+$head Get Started$$
+See $cref get_started.R$$.
 
 $end
