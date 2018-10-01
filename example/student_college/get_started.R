@@ -7,36 +7,56 @@
 # -----------------------------------------------------------------------------
 # $begin get_started.R$$ $newlinech #$$
 #
-# $section Get Starting Using This Package$$
+# $section Get Starting Using student_college$$
 #
-# $head Discussion$$
-# This is the 7 students, 2 colleges, 3 available slots example from
-# $href%
-# https://cran.r-project.org/web/packages/matchingMarkets/matchingMarkets.pdf
-# %matchingMarkets
-# %$$.
-# The results are checked for correctness as well as being printed
-# to standard output.
+# $head Run This Example$$
+# $list number$$
+# Change into the
+# $cref/distribution directory
+#	/match_csv
+#	/Installation
+#	/Distribution Directory/$$,
+# $lnext
+# If it does not yet exist, create the $code build$$ sub-directory.
+# $lnext
+# Start the R program.
+# $lnext
+# Execute the following R command.
+# $srccode%R%
+#	source('example/student_college/get_started.R')
+# %$$
+# $lend
+# Below is a step by step explanation of this example
+# together with the corresponding R source code.
 #
-# $head Source Code$$
-# $srcfile%example/student_college/get_started.R%0# %# BEGIN R%# END R%1%$$
+# $head Load The student_college Routine$$
+# The following R commands loads the $code student_college$$ routine
+# into your R session.
+# You must do this before you can run the $code student_college$$ routine.
+# $srccode%R%
+source('R/student_college.R')
+# %$$
 #
-# $end
-# BEGIN R
-# ---------------------------------------------------------------------------
-source('R/student_college.R') # load the student_college function
-setwd('build')                # put files in build directory
-# ---------------------------------------------------------------------------
-# student.csv
+# $head Create The Student File$$
+# The R commands below create the
+# $cref/student_file/student_college/student_file/$$ for this example.
+# You could use a spread sheet to create this file.
+# $srccode%R%
 data <- paste(
 "s1,s2,s3,s4,s5,s6,s7" , # student names
 "c1,c1,c1,c1,c1,c1,c1" , # college c1 is first choice for all students
 "c2,c2,  ,c2,c2,c2,c2" , # student s3 has no second choice of college
-sep="\n" # put a newline character between each line above
+sep="\n"                 # put a newline character between each line above
 )
-write(data, "student.csv")
-# ---------------------------------------------------------------------------
-# college.csv
+write(data, "build/student.csv")
+# %$$
+# Note that this example has 7 students.
+#
+# $head Create the College File$$
+# The R commands below create the
+# $cref/college_file/student_college/college_file/$$ for this example.
+# You could use a spread sheet to create this file.
+# $srccode%R%
 data <- paste(
 "c1,c2",  # college names
 " 3, 3",  # both colleges have 3 available slots
@@ -49,22 +69,44 @@ data <- paste(
 "s7,  ",  # s7 is seventh choice for c1, not acceptable to c2
 sep="\n"  # put a newline character between each line above
 )
-write(data, "college.csv")
-# ---------------------------------------------------------------------------
-student_file <- "student.csv"
-college_file <- "college.csv"
-match_file   <- "match.csv"
-student_college(student_file, college_file, match_file)
-# ---------------------------------------------------------------------------
-match_data_frame <- read.csv(
-	match_file, colClasses  = "character", check.names = FALSE
-)
+write(data, "build/college.csv")
+# %$$
+# Note that this example has
+# 2 colleges and 3 available slots available for each college.
 #
+# $head Run student_college$$
+# The R commands below run the $cref student_college$$ routine
+# for this example.
+# Normally you would change the file names when running this routine.
+# $srccode%R%
+student_file <- "build/student.csv"
+college_file <- "build/college.csv"
+match_file   <- "build/match.csv"
+student_college(student_file, college_file, match_file)
+# %$$
+#
+# $head Check Match$$
+# The R commands below check the match file for this example.
+# You could load this file into a spread sheet
+# to see the match.
+#
+# $subhead Read Match File$$
+# $srccode%R%
+match_data_frame <- read.csv(
+	"build/match.csv", colClasses  = "character", check.names = FALSE
+)
+# %$$
+#
+# $subhead Extract Optimal Match$$
+# $srccode%R%
 optimal <- match_data_frame[,"optimal"]
 student <- match_data_frame[,"student"]
 college <- match_data_frame[,"college"]
 matchid <- match_data_frame[,"matchid"]
+# %$$
 #
+# $subhead Check Optimal Match$$
+# $srccode%R%
 ok  <- length(optimal) == 5
 ok  <- ok && student[1] == "s1" && college[1] == "c1"
 ok  <- ok && student[2] == "s2" && college[2] == "c1"
@@ -73,10 +115,16 @@ ok  <- ok && student[4] == "s4" && college[4] == "c2"
 ok  <- ok && student[5] == "s5" && college[5] == "c2"
 for( i in seq(5) )
 	ok <- ok && optimal[i] == "b" && matchid[i] == "1"
+# %$$
 #
+# $head Report Check Result$$
+# $srccode%R%
 if( ok )
 {	message("get_started: OK")
 } else {
 	stop("get_started: Error")
 }
-# END R
+# %$$
+#
+#
+# $end

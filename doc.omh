@@ -52,6 +52,12 @@ $$
 page and unpack it.
 In this case the distribution directory is the one created when you unpack it.
 
+$subhead Distribution Directory$$
+The directory you created using the download instructions above
+is referred to as the distribution directory.
+For example, if you used $code git$$, the distribution directory is
+
+$code match_csv.git$$.
 $subhead matchingMarkets$$
 Open R and following the install instructions for
 $href%matchingMarkets%https://github.com/thiloklein/matchingMarkets%$$.
