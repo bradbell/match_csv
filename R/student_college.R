@@ -42,19 +42,19 @@
 #
 # $head student_file$$
 # This is a csv input file
-# with $icode n_student$$ columns and
+# with $icode n_student$$ columns at most
 # $icode%n_college%+1%$$ rows.
 # The first row contains the names of the students.
 # The other cells in each column are the names of the
 # acceptable colleges for the student name in the first row of the column.
 # The lower the row index, the more preferred the college is to the student.
 # No college name appears twice in a column.
-# For each student (column), empty cells are used for the colleges that are
-# not acceptable to a student and are placed at the bottom of the column.
+# For each student (column), empty cells at the bottom of the column are used
+# when there are no more colleges that are acceptable to the student.
 #
 # $head college_file$$
 # This is a csv input file with $icode n_college$$ columns and
-# $icode n_student+2$$ rows.
+# at most $icode n_student+2$$ rows.
 # The first row contains the names of the colleges.
 # Each column of the second row contains a positive integer that specifies
 # the number of students positions the corresponding
@@ -63,8 +63,8 @@
 # acceptable students for the college name in the first row of the column.
 # The lower the row index, the more preferred the student is to the college.
 # No student name appears twice in a column.
-# For each college (column), empty cells are used for the students that are
-# not acceptable to a college and are placed at the bottom of the column.
+# For each college (column), empty cells at the bottom of the column  are used
+# when there are no more students that are acceptable to the college.
 #
 # $head match_file$$
 # This is a csv output file where each row represents a pairing
@@ -102,6 +102,11 @@
 empty <- function(x)
 {	return( is.na(x) | x == "" )
 }
+# A duplicate is two non-empty entires in the same column that are equal.
+# An empty return means no duplicates are found. Otherwise:
+#	result["column"] is the column where the duplicate was found
+#	result["first"] is one row index of the duplicate.
+#	result["second"] is the other row index of the duplicate.
 check4duplicates <- function(mat)
 {	result = c()
 	for( j in seq( ncol(mat) ) )
@@ -149,23 +154,26 @@ student_college <- function(student_file, college_file, match_file)
 	student_size    <- dim(student_data_frame)
 	college_size    <- dim(college_data_frame)
 	#
-	n_student       <- student_size[2]
-	n_college       <- college_size[2]
+	# number of students and colleges
+	n_student       <- student_size[2]  # number of columns in student file
+	n_college       <- college_size[2]  # number of columns in college file
 	#
-	# check number of rows in student_file
-	if( student_size[1] != n_college )
+	# maximum number of choices by students, colleges
+	m_college <- student_size[1]
+	m_student <- college_size[1]  - 1
+	#
+	if( m_college > n_college )
 	{	fmt  <- "number of rows in student_file = %d"
 		msg1 <- sprintf(fmt, student_size[1] + 1)
-		fmt  <- "n_college + 1 = %d"
+		fmt  <- "is greater than n_college + 1 = %d"
 		msg2 <- sprintf(fmt, n_college + 1 )
 		stop( paste(msg1, msg2, sep=', ') )
 	}
 	#
-	# check number of rows in college_file
-	if( college_size[1]  != n_student + 1 )
+	if( m_student >  n_student )
 	{	fmt  <- "number of rows in college_file = %d"
 		msg1 <- sprintf(fmt, college_size[1] + 1)
-		fmt  <- "n_student + 2 = %d"
+		fmt  <- "is greater than n_student + 2 = %d"
 		msg2 <- sprintf(fmt, n_student + 2 )
 		stop( paste(msg1, msg2, sep=', ') )
 	}
@@ -174,18 +182,20 @@ student_college <- function(student_file, college_file, match_file)
 	student_name <- colnames(student_data_frame)
 	college_name <- colnames(college_data_frame)
 	# -------------------------------------------------------------------------
-	# matrices
+	# matrices (not including first row which contained names)
 	student_matrix <- as.matrix( student_data_frame )
 	college_matrix <- as.matrix( college_data_frame )
 	# -------------------------------------------------------------------------
-	# number of slots for j-th college is n_slot[j]
+	# Number of slots for each college is currently first row of college_matrix.
+	# Move it to n_slot while converting it to integer.
 	n_slot <- rep(0, n_college)
 	for ( j in seq(n_college) )
 		n_slot[j]      <- as.integer( college_matrix[1, j] )
-	# -------------------------------------------------------------------------
+	#
 	# remove row 1 from college_matrix (no longer needed)
 	college_matrix <- college_matrix[-1,]
 	# -------------------------------------------------------------------------
+	# check no duplicates in list of choices for each student
 	result <- check4duplicates(student_matrix)
 	if( length(result) > 0 )
 	{	j   <- result["column"]
@@ -194,6 +204,7 @@ student_college <- function(student_file, college_file, match_file)
 		fmt <- "row %d and row %d in column '%s' of student file are equal"
 		stop( sprintf(fmt, i1+1, i2+1, student_name[j]) )
 	}
+	# check not duplicates in list of choices for each college
 	result <- check4duplicates(college_matrix)
 	if( length(result) > 0 )
 	{	j   <- result["column"]
@@ -203,37 +214,35 @@ student_college <- function(student_file, college_file, match_file)
 		stop( sprintf(fmt, i1+1, i2+1, college_name[j]) )
 	}
 	# -------------------------------------------------------------------------
-	# Check for bad students
-	student_ok = rep(FALSE, n_student)
-	for( j in seq(n_student) )
-	{	for( i in seq(n_college) )
-		{	college <- student_matrix[i,j]
+	# students that have at least one possible match
+	student_ok = rep(FALSE, n_student) # initilaize as false
+	for( j in seq(n_student) )  # j-th student
+	{	for( i in seq(m_college) )
+		{	college <- student_matrix[i,j] # i-th choice for this student
 			if( ! ( empty(college) || student_ok[j] ) )
-			{	acceptible_student = college_matrix[,college]
+			{	# acceptible students for this college
+				acceptible_student = college_matrix[,college]
 				if( student_name[j] %in% acceptible_student )
-					student_ok[j] <- TRUE
+					student_ok[j] <- TRUE # j-th student has possible match
 			}
 		}
 	}
 	#
-	# new college_matrix
+	# remove students that have no possible match from
+	# college_matrix, student_matrix, student_name, n_student
 	vec <- rep(TRUE, n_student * n_college)
 	ok  <- matrix(vec, n_student, n_college)
 	for( student in student_name[ ! student_ok ] )
 		ok <- ok & college_matrix != student
 	college_matrix[! ok] <- NA
-	#
-	# new n_student
-	n_student <- sum(student_ok)
-	# new student_matrix
-	student_matrix <- student_matrix[, student_ok]
-	# new student_name
-	student_name       <- student_name[student_ok]
+	n_student            <- sum(student_ok)
+	student_matrix       <- student_matrix[, student_ok]
+	student_name         <- student_name[student_ok]
 	# -------------------------------------------------------------------------
-	# Check for bad colleges
+	# colleges that have at least one possible match
 	college_ok = rep(FALSE, n_college)
-	for( j in seq(n_college) )
-	{	for( i in seq(n_student) )
+	for( j in seq(n_college) ) # j-th college
+	{	for( i in seq(m_student) )
 		{	student <- college_matrix[i,j]
 			if( ! ( empty(student) || college_ok[j] ) )
 			{	acceptible_college = student_matrix[,student]
@@ -243,32 +252,27 @@ student_college <- function(student_file, college_file, match_file)
 		}
 	}
 	#
-	# new student_matrix
+	# remove colleges that have no possible match from
+	# student_matrix, college_matrix, college_name, n_college
 	vec <- rep(TRUE, n_college * n_student)
 	ok  <- matrix(vec, n_college, n_student)
 	for( college in college_name[ ! college_ok ] )
 		ok <- ok & student_matrix != college
 	student_matrix[! ok] <- NA
-	#
-	# new n_college
-	n_college      <- sum(college_ok)
-	# new college_matrix
-	college_matrix <- college_matrix[, college_ok]
-	# new college_name
-	college_name   <- college_name[college_ok]
-	# new n_slot
-	n_slot         <- n_slot[college_ok]
+	n_college            <- sum(college_ok)
+	college_matrix       <- college_matrix[, college_ok]
+	college_name         <- college_name[college_ok]
+	n_slot               <- n_slot[college_ok]
 	# -------------------------------------------------------------------------
 	# college preference matrix
+	# is college_matrix with student names replaced by student index
 	college_preference <- matrix(
-		rep(0, n_student * n_college), n_student, n_college
+		rep(NA, n_student * n_college), n_student, n_college
 	)
 	for( j in seq(n_college) )
-	{	for(i in seq(n_student) )
+	{	for(i in seq(m_student) )
 		{	name  <- college_matrix[i,j]
-			if( empty(name) )
-				college_preference[i,j] <- NA
-			else
+			if( ! empty(name) )
 			{	name <- as.character(name)
 				index <- which( student_name == name )
 				if( length(index) > 1 )
@@ -286,15 +290,14 @@ student_college <- function(student_file, college_file, match_file)
 	}
 	# -------------------------------------------------------------------------
 	# student preference matrix
+	# is student_matrx with college names replaced by college index
 	student_preference <- matrix(
-		rep(0, n_college * n_student), n_college, n_student
+		rep(NA, n_college * n_student), n_college, n_student
 	)
 	for( j in seq(n_student) )
-	{	for(i in seq(n_college) )
+	{	for(i in seq(m_college) )
 		{	name  <- student_matrix[i,j]
-			if( empty(name) )
-				student_preference[i,j] <- NA
-			else
+			if( ! empty(name) )
 			{	name  <- as.character(name)
 				index <- which( college_name == name )
 				if( length(index) > 1 )
