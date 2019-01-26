@@ -9,4 +9,4 @@
 PROJECT(match_csv)
 #
 # match_csv_version is used by version.sh to get the version number.
-SET(match_csv_version "20181001")
+SET(match_csv_version "20190126")
