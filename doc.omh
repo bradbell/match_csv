@@ -20,7 +20,8 @@ match_csv-20190126: Csv File Interface to Matching Problem Solvers
 $$
 
 $contents%
-	R/student_college.R
+	R/student_college.R%
+	whats_new.omh
 %$$
 
 $head Installation$$

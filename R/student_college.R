@@ -94,7 +94,8 @@
 #	example/student_college/get_started.R%
 #	example/student_college/bad_student.R%
 #	example/student_college/bad_college.R%
-#	example/student_college/stable_marriage.R
+#	example/student_college/stable_marriage.R%
+#	example/student_college/fewer_rows.R
 # %$$
 #
 # $end
@@ -230,11 +231,11 @@ student_college <- function(student_file, college_file, match_file)
 	#
 	# remove students that have no possible match from
 	# college_matrix, student_matrix, student_name, n_student
-	vec <- rep(TRUE, n_student * n_college)
-	ok  <- matrix(vec, n_student, n_college)
+	vec <- rep(TRUE, m_student * n_college)
+	ok  <- matrix(vec, m_student, n_college)
 	for( student in student_name[ ! student_ok ] )
 		ok <- ok & college_matrix != student
-	college_matrix[! ok] <- NA
+	college_matrix[! ok] <- ""
 	n_student            <- sum(student_ok)
 	student_matrix       <- student_matrix[, student_ok]
 	student_name         <- student_name[student_ok]
@@ -254,11 +255,11 @@ student_college <- function(student_file, college_file, match_file)
 	#
 	# remove colleges that have no possible match from
 	# student_matrix, college_matrix, college_name, n_college
-	vec <- rep(TRUE, n_college * n_student)
-	ok  <- matrix(vec, n_college, n_student)
+	vec <- rep(TRUE, m_college * n_student)
+	ok  <- matrix(vec, m_college, n_student)
 	for( college in college_name[ ! college_ok ] )
 		ok <- ok & student_matrix != college
-	student_matrix[! ok] <- NA
+	student_matrix[! ok] <- ""
 	n_college            <- sum(college_ok)
 	college_matrix       <- college_matrix[, college_ok]
 	college_name         <- college_name[college_ok]

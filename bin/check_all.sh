@@ -29,6 +29,7 @@ list='
 	example/student_college/stable_marriage.R
 	example/student_college/bad_student.R
 	example/student_college/bad_college.R
+	example/student_college/fewer_rows.R
 '
 ok='yes'
 for file in $list
