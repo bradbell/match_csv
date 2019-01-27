@@ -11,13 +11,15 @@ var list_up0 = [
 'get_started.r.htm'
 ];
 var list_down2 = [
-'student_college.htm'
+'student_college.htm',
+'whats_new.htm'
 ];
 var list_down1 = [
 'get_started.r.htm',
 'bad_student.r.htm',
 'bad_college.r.htm',
-'stable_marriage.r.htm'
+'stable_marriage.r.htm',
+'fewer_rows.r.htm'
 ];
 var list_current0 = [
 'get_started.r.htm#Run This Example',

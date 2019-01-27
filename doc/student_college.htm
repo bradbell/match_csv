@@ -28,9 +28,6 @@ A:active { color : purple }
 </head>
 <body>
 <table><tr>
-<td>
-<a href="https://github.com/bradbell/match_csv" target="_top"><img border="0" src="_image.gif"></a>
-</td>
 <td><a href="_contents.htm" target="_top">Prev</a>
 </td><td><a href="get_started.r.htm" target="_top">Next</a>
 </td><td>
@@ -54,6 +51,7 @@ A:active { color : purple }
 <select onchange='choose_down1(this)'>
 <option>match_csv-&gt;</option>
 <option>student_college</option>
+<option>whats_new</option>
 </select>
 </td>
 <td>
@@ -63,6 +61,7 @@ A:active { color : purple }
 <option>bad_student.R</option>
 <option>bad_college.R</option>
 <option>stable_marriage.R</option>
+<option>fewer_rows.R</option>
 </select>
 </td>
 <td>
@@ -147,7 +146,7 @@ which is also equal to the number of columns in
 This is a csv input file
 with 
 <code><i><font color="black"><span style='white-space: nowrap'>n_student</span></font></i></code>
- columns and
+ columns at most
 
 <code><i><font color="black"><span style='white-space: nowrap'>n_college</span></font></i><font color="blue"><span style='white-space: nowrap'>+1</span></font></code>
  rows.
@@ -156,8 +155,8 @@ The other cells in each column are the names of the
 acceptable colleges for the student name in the first row of the column.
 The lower the row index, the more preferred the college is to the student.
 No college name appears twice in a column.
-For each student (column), empty cells are used for the colleges that are
-not acceptable to a student and are placed at the bottom of the column.
+For each student (column), empty cells at the bottom of the column are used
+when there are no more colleges that are acceptable to the student.
 
 <br>
 <br>
@@ -166,7 +165,7 @@ not acceptable to a student and are placed at the bottom of the column.
 This is a csv input file with 
 <code><i><font color="black"><span style='white-space: nowrap'>n_college</span></font></i></code>
  columns and
-
+at most 
 <code><i><font color="black"><span style='white-space: nowrap'>n_student+2</span></font></i></code>
  rows.
 The first row contains the names of the colleges.
@@ -177,8 +176,8 @@ The other cells in each column are the names of the
 acceptable students for the college name in the first row of the column.
 The lower the row index, the more preferred the student is to the college.
 No student name appears twice in a column.
-For each college (column), empty cells are used for the students that are
-not acceptable to a college and are placed at the bottom of the column.
+For each college (column), empty cells at the bottom of the column  are used
+when there are no more students that are acceptable to the college.
 
 <br>
 <br>
@@ -233,7 +232,7 @@ Otherwise, cell is empty.
 <b><big><a name="Contents" id="Contents">Contents</a></big></b>
 <br>
 <table>
-<tr><td><a href="get_started.r.htm" target="_top">get_started.R</a></td><td>Get&nbsp;Starting&nbsp;Using&nbsp;student_college</td></tr><tr><td><a href="bad_student.r.htm" target="_top">bad_student.R</a></td><td>Example:&nbsp;Student&nbsp;Thinks&nbsp;to&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="bad_college.r.htm" target="_top">bad_college.R</a></td><td>Example:&nbsp;College&nbsp;Thinks&nbsp;To&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="stable_marriage.r.htm" target="_top">stable_marriage.R</a></td><td>Stable&nbsp;Marriage&nbsp;Problem&nbsp;With&nbsp;Three&nbsp;Solutions</td></tr></table>
+<tr><td><a href="get_started.r.htm" target="_top">get_started.R</a></td><td>Get&nbsp;Starting&nbsp;Using&nbsp;student_college</td></tr><tr><td><a href="bad_student.r.htm" target="_top">bad_student.R</a></td><td>Example:&nbsp;Student&nbsp;Thinks&nbsp;to&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="bad_college.r.htm" target="_top">bad_college.R</a></td><td>Example:&nbsp;College&nbsp;Thinks&nbsp;To&nbsp;Highly&nbsp;of&nbsp;It's&nbsp;Self</td></tr><tr><td><a href="stable_marriage.r.htm" target="_top">stable_marriage.R</a></td><td>Stable&nbsp;Marriage&nbsp;Problem&nbsp;With&nbsp;Three&nbsp;Solutions</td></tr><tr><td><a href="fewer_rows.r.htm" target="_top">fewer_rows.R</a></td><td>Example&nbsp;With&nbsp;Fewer&nbsp;Rows&nbsp;than&nbsp;Possible&nbsp;in&nbsp;Data&nbsp;Files</td></tr></table>
 <hr>Input File: R/student_college.R
 
 </body>

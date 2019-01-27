@@ -10,13 +10,15 @@ var list_up0 = [
 'student_college.htm'
 ];
 var list_down1 = [
-'student_college.htm'
+'student_college.htm',
+'whats_new.htm'
 ];
 var list_down0 = [
 'get_started.r.htm',
 'bad_student.r.htm',
 'bad_college.r.htm',
-'stable_marriage.r.htm'
+'stable_marriage.r.htm',
+'fewer_rows.r.htm'
 ];
 var list_current0 = [
 'student_college.htm#Syntax',

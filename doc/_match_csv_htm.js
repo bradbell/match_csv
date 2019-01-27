@@ -9,7 +9,8 @@ var list_up0 = [
 'match_csv.htm'
 ];
 var list_down0 = [
-'student_college.htm'
+'student_college.htm',
+'whats_new.htm'
 ];
 var list_current0 = [
 'match_csv.htm#Contents',

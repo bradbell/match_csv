@@ -10,7 +10,8 @@ var list_up0 = [
 '_external.htm'
 ];
 var list_down1 = [
-'student_college.htm'
+'student_college.htm',
+'whats_new.htm'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

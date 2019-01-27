@@ -7,19 +7,14 @@ var list_across0 = [
 ];
 var list_up0 = [
 'match_csv.htm',
-'_reference.htm'
+'whats_new.htm'
 ];
 var list_down1 = [
 'student_college.htm',
 'whats_new.htm'
 ];
 var list_current0 = [
-'_reference.htm#B',
-'_reference.htm#F',
-'_reference.htm#G',
-'_reference.htm#M',
-'_reference.htm#S',
-'_reference.htm#W'
+'whats_new.htm#2019-01-27'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;

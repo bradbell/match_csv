@@ -7,19 +7,22 @@ var list_across0 = [
 ];
 var list_up0 = [
 'match_csv.htm',
-'_reference.htm'
+'student_college.htm',
+'fewer_rows.r.htm'
 ];
-var list_down1 = [
+var list_down2 = [
 'student_college.htm',
 'whats_new.htm'
 ];
+var list_down1 = [
+'get_started.r.htm',
+'bad_student.r.htm',
+'bad_college.r.htm',
+'stable_marriage.r.htm',
+'fewer_rows.r.htm'
+];
 var list_current0 = [
-'_reference.htm#B',
-'_reference.htm#F',
-'_reference.htm#G',
-'_reference.htm#M',
-'_reference.htm#S',
-'_reference.htm#W'
+'fewer_rows.r.htm#Source Code'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;
@@ -32,6 +35,12 @@ function choose_up0(item)
 	item.selectedIndex = 0;
 	if(index > 0)
 		document.location = list_up0[index-1];
+}
+function choose_down2(item)
+{	var index          = item.selectedIndex;
+	item.selectedIndex = 0;
+	if(index > 0)
+		document.location = list_down2[index-1];
 }
 function choose_down1(item)
 {	var index          = item.selectedIndex;
