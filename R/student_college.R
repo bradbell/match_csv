@@ -49,8 +49,8 @@
 # acceptable colleges for the student name in the first row of the column.
 # The lower the row index, the more preferred the college is to the student.
 # No college name appears twice in a column.
-# For each student (column), empty cells at the bottom of the column are used
-# when there are no more colleges that are acceptable to the student.
+# For each student (column), empty cells correspond to
+# colleges that are acceptable to the student.
 #
 # $head college_file$$
 # This is a csv input file with $icode n_college$$ columns and
@@ -63,8 +63,8 @@
 # acceptable students for the college name in the first row of the column.
 # The lower the row index, the more preferred the student is to the college.
 # No student name appears twice in a column.
-# For each college (column), empty cells at the bottom of the column  are used
-# when there are no more students that are acceptable to the college.
+# For each college (column), empty cells correspond to
+# students that are acceptable to the college.
 #
 # $head match_file$$
 # This is a csv output file where each row represents a pairing
@@ -95,7 +95,8 @@
 #	example/student_college/bad_student.R%
 #	example/student_college/bad_college.R%
 #	example/student_college/stable_marriage.R%
-#	example/student_college/fewer_rows.R
+#	example/student_college/fewer_rows.R%
+#	example/student_college/empty_cells.R
 # %$$
 #
 # $end
@@ -271,10 +272,12 @@ student_college <- function(student_file, college_file, match_file)
 		rep(NA, n_student * n_college), n_student, n_college
 	)
 	for( j in seq(n_college) )
-	{	for(i in seq(m_student) )
+	{	count <- 0
+		for(i in seq(m_student) )
 		{	name  <- college_matrix[i,j]
 			if( ! empty(name) )
-			{	name <- as.character(name)
+			{	count <- count + 1
+				name <- as.character(name)
 				index <- which( student_name == name )
 				if( length(index) > 1 )
 				{	stop("program error")
@@ -285,7 +288,7 @@ student_college <- function(student_file, college_file, match_file)
 					msg2 <- "is not a valid student name"
 					stop( paste(msg1, msg2, sep=' ') )
 				}
-				college_preference[i,j] <- index
+				college_preference[count,j] <- index
 			}
 		}
 	}
@@ -296,10 +299,12 @@ student_college <- function(student_file, college_file, match_file)
 		rep(NA, n_college * n_student), n_college, n_student
 	)
 	for( j in seq(n_student) )
-	{	for(i in seq(m_college) )
+	{	count <- 0
+		for(i in seq(m_college) )
 		{	name  <- student_matrix[i,j]
 			if( ! empty(name) )
-			{	name  <- as.character(name)
+			{	count <- count + 1
+				name  <- as.character(name)
 				index <- which( college_name == name )
 				if( length(index) > 1 )
 				{	stop("program error")
@@ -310,7 +315,7 @@ student_college <- function(student_file, college_file, match_file)
 					msg2 <- "is not a valid college name"
 					stop( paste(msg1, msg2, sep=' ') )
 				}
-				student_preference[i,j] <- index
+				student_preference[count,j] <- index
 			}
 		}
 	}

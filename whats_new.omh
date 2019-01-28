@@ -9,7 +9,9 @@ $begin whats_new$$
 
 $section Changes in Reverse Order by Date$$
 
+
 $head 2019-01-27$$
+$list number$$
 It is no longer necessary to fill out the
 $cref/student_file/student_college/student_file/$$
 ($cref/college_file/student_college/college_file/$$),
@@ -17,5 +19,11 @@ with empty cells at the bottom,
 so that it has $icode%n_college%+1%$$ ($icode%n_student%+2%$$) rows.
 The $cref fewer_rows.R$$ example was added as a demonstration
 of this feature.
+$lnext
+In addition, empty cells no longer need be at the bottom of the files;
+see $cref empty_cells.R$$.
+This also fixed a bug when students (colleges) are removed because
+not college (student) would accept them.
+$lend
 
 $end
