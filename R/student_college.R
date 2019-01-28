@@ -96,7 +96,8 @@
 #	example/student_college/bad_college.R%
 #	example/student_college/stable_marriage.R%
 #	example/student_college/fewer_rows.R%
-#	example/student_college/empty_cells.R
+#	example/student_college/empty_cells.R%
+#	example/student_college/empty_column.R
 # %$$
 #
 # $end
@@ -114,7 +115,8 @@ check4duplicates <- function(mat)
 	for( j in seq( ncol(mat) ) )
 	{	column <- mat[,j]
 		check  <- column[ ! empty(column) ]
-		for( i in seq( length(check) ) )
+		# use seq_len because seq is brain dead for length zero
+		for( i in seq_len( length(check) ) )
 		{	name <- as.character( check[i] )
 			found <- which( name == column )
 			count <- length(found)
@@ -122,6 +124,7 @@ check4duplicates <- function(mat)
 			{	result["column"] = j
 				result["first"]  = found[1]
 				result["second"] = found[2]
+				browser()
 				return( result )
 			}
 		}

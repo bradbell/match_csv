@@ -30,6 +30,8 @@ list='
 	example/student_college/bad_student.R
 	example/student_college/bad_college.R
 	example/student_college/fewer_rows.R
+	example/student_college/empty_cells.R
+	example/student_college/empty_column.R
 '
 ok='yes'
 for file in $list

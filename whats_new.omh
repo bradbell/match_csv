@@ -6,8 +6,20 @@
 #                 https://www.gnu.org/licenses/gpl-3.0.txt
 # -----------------------------------------------------------------------------
 $begin whats_new$$
+$spell
+	len
+$$
 
 $section Changes in Reverse Order by Date$$
+
+$head 2019-01-28$$
+A user tried a column in a
+$cref/college_file/student_college/college_file/$$ with a column that
+was entirely empty except for the college names and number of slots
+at the top.
+This, combined with the unexpected fact in R that
+$codei%length(seq(%i%)) = 2%$$ when $icode%i% = 0%$$, led to a bug.
+This bug has been fixed by changed $code seq$$ to $code seq_len$$.
 
 
 $head 2019-01-27$$
