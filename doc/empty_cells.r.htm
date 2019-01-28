@@ -12,9 +12,9 @@ MathJax.Hub.Config({
 >
 </script>
 <head>
-<title>Example With Fewer Rows than Possible in Data Files</title>
+<title>Example With Empty Cells in Data Files</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-<meta name="description" id="description" content="Example With Fewer Rows than Possible in Data Files">
+<meta name="description" id="description" content="Example With Empty Cells in Data Files">
 <meta name="keywords" id="keywords" content=" ">
 <style type='text/css'>
 body { color : black }
@@ -23,13 +23,13 @@ A:link { color : blue }
 A:visited { color : purple }
 A:active { color : purple }
 </style>
-<script type='text/javascript' language='JavaScript' src='_fewer_rows.r_htm.js'>
+<script type='text/javascript' language='JavaScript' src='_empty_cells.r_htm.js'>
 </script>
 </head>
 <body>
 <table><tr>
-<td><a href="stable_marriage.r.htm" target="_top">Prev</a>
-</td><td><a href="empty_cells.r.htm" target="_top">Next</a>
+<td><a href="fewer_rows.r.htm" target="_top">Prev</a>
+</td><td><a href="whats_new.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
 <option>Index-&gt;</option>
@@ -45,7 +45,7 @@ A:active { color : purple }
 <option>Up-&gt;</option>
 <option>match_csv</option>
 <option>student_college</option>
-<option>fewer_rows.R</option>
+<option>empty_cells.R</option>
 </select>
 </td>
 <td>
@@ -66,7 +66,7 @@ A:active { color : purple }
 <option>empty_cells.R</option>
 </select>
 </td>
-<td>fewer_rows.R</td>
+<td>empty_cells.R</td>
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
@@ -74,7 +74,7 @@ A:active { color : purple }
 </select>
 </td>
 </tr></table><br>
-<center><b><big><big>Example With Fewer Rows than Possible in Data Files</big></big></b></center>
+<center><b><big><big>Example With Empty Cells in Data Files</big></big></b></center>
 <br>
 <b><big><a name="Source Code" id="Source Code">Source Code</a></big></b>
 
@@ -87,7 +87,8 @@ setwd(<font color="#FF0000">'build'</font>)                <i><font color="#9A19
 data &lt;- paste(
 <font color="#FF0000">"A,B,C"</font> , <i><font color="#9A1900"># student names</font></i>
 <font color="#FF0000">"Y,Z,X"</font> , <i><font color="#9A1900"># first choice</font></i>
-<font color="#FF0000">"Z,X,Y"</font> , <i><font color="#9A1900"># second choice</font></i>
+<font color="#FF0000">"X,,"</font>   , <i><font color="#9A1900"># second choice for A</font></i>
+<font color="#FF0000">"Z,X,Y"</font> , <i><font color="#9A1900"># second choice for B, C, thirder choice for A</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font> <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"student.csv"</font>)
@@ -97,7 +98,8 @@ data &lt;- paste(
 <font color="#FF0000">"X,Y,Z"</font> , <i><font color="#9A1900"># college names</font></i>
 <font color="#FF0000">"1,1,1"</font> , <i><font color="#9A1900"># number of slots</font></i>
 <font color="#FF0000">"B,C,A"</font> , <i><font color="#9A1900"># first choice</font></i>
-<font color="#FF0000">"C,A,B"</font> , <i><font color="#9A1900"># second choice</font></i>
+<font color="#FF0000">",B,"</font>   , <i><font color="#9A1900"># second choice for Y</font></i>
+<font color="#FF0000">"C,A,B"</font> , <i><font color="#9A1900"># second choice for X, Z, third choice for Y</font></i>
 sep=<font color="#FF0000">"</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font>  <i><font color="#9A1900"># put a newline character between each line above</font></i>
 )
 write(data, <font color="#FF0000">"college.csv"</font>)
@@ -124,12 +126,12 @@ ok  &lt;- ok &amp;&amp; student[2] == <font color="#FF0000">"B"</font> &amp;&amp
 ok  &lt;- ok &amp;&amp; student[3] == <font color="#FF0000">"C"</font> &amp;&amp; college[3] == <font color="#FF0000">"X"</font> &amp;&amp; matchid == id1
 <i><font color="#9A1900">#</font></i>
 <b><font color="#0000FF">if</font></b>( ok )
-{    message(<font color="#FF0000">"fewer_rows: OK"</font>)
+{    message(<font color="#FF0000">"empty_cells: OK"</font>)
 } <b><font color="#0000FF">else</font></b> {
-     stop(<font color="#FF0000">"fewer_rows: Error"</font>)
+     stop(<font color="#FF0000">"empty_cells: Error"</font>)
 }</tt></pre>
 
-<hr>Input File: example/student_college/fewer_rows.R
+<hr>Input File: example/student_college/empty_cells.R
 
 </body>
 </html>
