@@ -20,7 +20,8 @@ var list_down1 = [
 'bad_college.r.htm',
 'stable_marriage.r.htm',
 'fewer_rows.r.htm',
-'empty_cells.r.htm'
+'empty_cells.r.htm',
+'empty_column.r.htm'
 ];
 var list_current0 = [
 'stable_marriage.r.htm#Discussion',

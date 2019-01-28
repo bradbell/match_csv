@@ -14,6 +14,7 @@ var list_down1 = [
 'whats_new.htm'
 ];
 var list_current0 = [
+'whats_new.htm#2019-01-28',
 'whats_new.htm#2019-01-27'
 ];
 function choose_across0(item)

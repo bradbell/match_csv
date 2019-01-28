@@ -28,7 +28,7 @@ A:active { color : purple }
 </head>
 <body>
 <table><tr>
-<td><a href="empty_cells.r.htm" target="_top">Prev</a>
+<td><a href="empty_column.r.htm" target="_top">Prev</a>
 </td><td><a href="_reference.htm" target="_top">Next</a>
 </td><td>
 <select onchange='choose_across0(this)'>
@@ -58,11 +58,30 @@ A:active { color : purple }
 <td>
 <select onchange='choose_current0(this)'>
 <option>Headings-&gt;</option>
+<option>2019-01-28</option>
 <option>2019-01-27</option>
 </select>
 </td>
 </tr></table><br>
 <center><b><big><big>Changes in Reverse Order by Date</big></big></b></center>
+<br>
+<b><big><a name="2019-01-28" id="2019-01-28">2019-01-28</a></big></b>
+<br>
+A user tried a column in a
+<a href="student_college.htm#college_file" target="_top"><span style='white-space: nowrap'>college_file</span></a>
+ with a column that
+was entirely empty except for the college names and number of slots
+at the top.
+This, combined with the unexpected fact in R that
+
+<code><font color="blue"><span style='white-space: nowrap'>length(seq(</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>))&nbsp;=&nbsp;2</span></font></code>
+ when 
+<code><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0</span></font></code>
+, led to a bug.
+This bug has been fixed by changed <code><font color="blue">seq</font></code> to <code><font color="blue">seq_len</font></code>.
+
+
+<br>
 <br>
 <b><big><a name="2019-01-27" id="2019-01-27">2019-01-27</a></big></b>
 
