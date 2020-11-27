@@ -1,13 +1,11 @@
-# Title
-match_csv: Csv File Interface to Matching Problem Solvers
+# Title Csv File Interface to Matching Problem Solvers
 
-# Support
-This package is no under development or supported.
+!# Support
+This package is no longer under development or supported.
 You could clone it and start your own development stream.
 
-# Links
-
-- [docmentation](https://bradbell.github.io/match_csv)
+# Documentation
+https://bradbell.github.io/match_csv
 
 # License
 <pre>
