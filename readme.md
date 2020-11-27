@@ -1,8 +1,9 @@
 # Title
 match_csv: Csv File Interface to Matching Problem Solvers
 
-# Under Construction
-This package is under construction.
+# Support
+This package is no under development or supported.
+You could clone it and start your own development stream.
 
 # Links
 
